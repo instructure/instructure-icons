@@ -96,7 +96,7 @@ const createReactDemo = function (variant) {
     });
     return gulp.src(taskDir + 'demo.tmpl')
       .pipe(consolidate('lodash', {
-        bundleName: config.libraryName + variant,
+        bundleName: capitalizeFirstLetter(toCamelCase(config.libraryName + variant)),
         bundlePath: path.relative(config.react.demoDestination, config.react.destination + variant),
         variant,
         glyphs
