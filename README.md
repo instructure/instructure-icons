@@ -1,8 +1,8 @@
-# Fabricons
+# Instructure Icons
 
-Generates one or more icon sets from Sketch files for multiple platforms (web, iOS, Android) and provides a local web application for testing the output. (see the [demo](http://junyper.github.io/fabricons) page for an example)
+Generates one or more icon sets from Sketch files for multiple platforms (web, iOS, Android) and provides a local web application for testing the output. (see the [demo](http://instructure.github.io/instructure-icons) page for an example)
 
-Fabricons outputs:
+Instructure outputs:
 
 - SVG files, icon font and SVG sprite optimized for web
 - SVG files with [configurable](gulpfile.babel.js/config.js) bounding boxes/margins for Android

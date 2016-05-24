@@ -1,4 +1,4 @@
-const libraryName = 'Fabricons';
+const libraryName = 'canvas-icons';
 const demoAppSource = './src/demoApp/';
 const source = './src/';
 const destination = './__build__/';
