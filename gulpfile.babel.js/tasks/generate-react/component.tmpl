@@ -1,0 +1,15 @@
+import React, { Component } from 'react'
+import BaseIcon from '<%= baseIconPath %>'
+
+export default class <%= name %> extends Component {
+  render() {
+    return (
+      <BaseIcon
+        {...this.props}
+        name="<%= name %>"
+        viewBox="<%= viewBox %>">
+        <%= svg %>
+      </BaseIcon>
+    )
+  }
+}
