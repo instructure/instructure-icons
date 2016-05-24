@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Sprite Demo Line</title>
+    <style>
+      body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; text-align: center; background: #f7f7f7 }
+      body > h1 { color: #666; margin: 1em 0 }
+      .sprite { display: none; }
+      .glyph { padding: 0 }
+      .glyph > li { display: inline-block; margin: .3em .2em; padding: .5em; background: #fff; border-radius: .5em; position: relative }
+      .glyph-img { border: 1px dashed rgba(0,0,0,0.5); margin: 0.5em; width: 2rem; height: 2rem; }
+      .glyph-name { font-size: .8em; color: #666; display: block }
+    </style>
+  </head>
+  <body>
+    <div class="sprite">
+    <svg xmlns="http://www.w3.org/2000/svg"><symbol id="add" viewBox="0 0 1920 1920">
+    <g fill-rule="evenodd">
+        <path d="M960 1728c-423.456 0-768-344.544-768-768s344.544-768 768-768 768 344.544 768 768-344.544 768-768 768M960 0C430.656 0 0 430.656 0 960s430.656 960 960 960 960-430.656 960-960S1489.344 0 960 0"/>
+        <path d="M1056 480H864v384H480v192h384v384h192v-384h384V864h-384z"/>
+    </g>
+</symbol><symbol id="arrow-left" viewBox="0 0 1920 1920">
+    <path d="M836.042 960l624.255-623.948c77.372-77.333 77.369-201.74.597-278.474-77.307-77.27-201.51-76.467-278.612.596L442.102 797.99c-44.47 44.449-63.38 104.449-56.843 162.01-6.537 57.561 12.372 117.561 56.843 162.01l740.18 739.816c77.102 77.063 201.305 77.865 278.612.596 76.772-76.734 76.775-201.14-.597-278.474L836.042 960z" stroke="#666" stroke-width="2" fill-rule="evenodd"/>
+</symbol></svg>
+    </div>
+
+    <h1>Line SVG Sprite</h1>
+
+    <ul class="glyph">
+      <li>
+        <div class="glyph-img">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#add"></use>
+          </svg>
+        </div>
+        <span class="glyph-name">add</span>
+      </li>
+      <li>
+        <div class="glyph-img">
+          <svg viewBox="0 0 32 32">
+            <use xlink:href="#arrow-left"></use>
+          </svg>
+        </div>
+        <span class="glyph-name">arrow-left</span>
+      </li>
+    </ul>
+  </body>
+</html>

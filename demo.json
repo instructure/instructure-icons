@@ -1,0 +1,43 @@
+{
+  "symbols": ["add", "arrow-left"],
+  "formats": [{
+    "name": "SVG",
+    "demos": [{
+      "path": "demos/svg/Large.html",
+      "name": "Large"
+    }, {
+      "path": "demos/svg/Medium.html",
+      "name": "Medium"
+    }, {
+      "path": "demos/svg/Small.html",
+      "name": "Small"
+    }]
+  }, {
+    "name": "SVG Sprite",
+    "demos": [{
+      "path": "demos/sprites/Line.html",
+      "name": "Line"
+    }, {
+      "path": "demos/sprites/Solid.html",
+      "name": "Solid"
+    }]
+  }, {
+    "name": "Font",
+    "demos": [{
+      "path": "demos/fonts/canvas-iconsLine.html",
+      "name": "canvas-iconsLine"
+    }, {
+      "path": "demos/fonts/canvas-iconsSolid.html",
+      "name": "canvas-iconsSolid"
+    }]
+  }, {
+    "name": "React",
+    "demos": [{
+      "path": "demos/react/Line.html",
+      "name": "Line"
+    }, {
+      "path": "demos/react/Solid.html",
+      "name": "Solid"
+    }]
+  }]
+}

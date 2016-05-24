@@ -1,0 +1,37 @@
+@font-face {
+  font-family: "canvas-iconsSolid";
+  src: url('../../fonts/Solid/canvas-iconsSolid.eot');
+  src: url('../../fonts/Solid/canvas-iconsSolid.eot?#iefix') format('eot'),
+    url('../../fonts/Solid/canvas-iconsSolid.woff') format('woff'),
+    url('../../fonts/Solid/canvas-iconsSolid.ttf') format('truetype'),
+    url('../../fonts/Solid/canvas-iconsSolid.svg#canvas-iconsSolid') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon:before {
+  display: inline-block;
+  font-family: "canvas-iconsSolid";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+.icon-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.icon-add:before { content: "\EA01" }
+.icon-arrow-left:before { content: "\EA02" }
