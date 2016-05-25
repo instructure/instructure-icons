@@ -12,13 +12,10 @@ import webpackStrem from 'webpack-stream';
 import named from 'vinyl-named';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack'
+import formatName from '../../lib/format-name';
 
-const capitalizeFirstLetter = function (string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-const toCamelCase = function (string) {
-  return string.replace(/(\-[a-z])/g, function($1) { return $1.toUpperCase().replace('-','') })
+const toComponentName = function (name, variant) {
+  return formatName(config.react.componentBaseName) + formatName(name)  + formatName(variant);
 }
 
 const taskDir = './gulpfile.babel.js/tasks/generate-react/';
@@ -28,14 +25,13 @@ const baseIconFileName = config.react.componentBaseName + 'Base';
 const createReactComponentsTask = function (variant) {
   const key = 'react-components-' + variant;
   const destination = config.react.destination + variant;
-  const componentBaseName = config.react.componentBaseName + variant;
 
   gulp.task(key, () => {
     return gulp.src(config.react.source + variant + '/*.svg')
       .pipe(cheerio({
         run: function ($, file, done) {
           const $svg = $('svg')
-          const componentName = componentBaseName + capitalizeFirstLetter(toCamelCase(path.basename(file.path, '.svg')))
+          const componentName = toComponentName(path.basename(file.path, '.svg'), variant)
           const data = {
             baseIconPath: path.relative(destination, path.join(config.react.destination, baseIconFileName)),
             name: componentName,
@@ -96,7 +92,7 @@ const createReactDemo = function (variant) {
     });
     return gulp.src(taskDir + 'demo.tmpl')
       .pipe(consolidate('lodash', {
-        bundleName: capitalizeFirstLetter(toCamelCase(config.libraryName + variant)),
+        bundleName: formatName(config.libraryName + formatName(variant)),
         bundlePath: path.relative(config.react.demoDestination, config.react.destination + variant),
         variant,
         glyphs

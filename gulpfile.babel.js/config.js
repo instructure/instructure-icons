@@ -1,4 +1,4 @@
-const libraryName = 'canvas-icons';
+const libraryName = 'InstructureIcons';
 const demoAppSource = './src/demoApp/';
 const source = './src/';
 const destination = './__build__/';
@@ -33,7 +33,7 @@ const sprites = {
 const react = {
   source: svg.destination,
   destination: destination + 'src/',
-  dist: destination + 'dist/',
+  dist: destination + 'react/',
   demoDestination: demoDestination + 'react/',
   componentBaseName: 'Icon'
 };

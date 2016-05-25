@@ -7,12 +7,13 @@ import rename from 'gulp-rename';
 import config from '../../config';
 import handleErrors from '../../lib/handle-errors';
 import path from 'path';
+import formatName from '../../lib/format-name';
 
 const createFontTask = function (variant) {
   const key = 'font-' + variant;
   const taskDir = './gulpfile.babel.js/tasks/generate-fonts/';
   const destination = config.fonts.destination + variant;
-  const fontName = config.fonts.fontName + variant;
+  const fontName = formatName(config.fonts.fontName) + formatName(variant);
   const formats = config.fonts.formats;
   const className = config.fonts.className;
 
