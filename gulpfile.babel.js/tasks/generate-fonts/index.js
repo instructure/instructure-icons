@@ -2,7 +2,7 @@ import gulp from 'gulp';
 import iconfont from 'gulp-iconfont';
 import consolidate from 'gulp-consolidate';
 import fs from 'fs';
-import sequence from 'gulp-sequence';
+import sequence from 'run-sequence';
 import rename from 'gulp-rename';
 import config from '../../config';
 import handleErrors from '../../lib/handle-errors';

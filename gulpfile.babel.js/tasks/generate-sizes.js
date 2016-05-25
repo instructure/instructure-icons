@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import cheerio from 'gulp-cheerio';
 import rename from 'gulp-rename';
-import sequence from 'gulp-sequence';
+import sequence from 'run-sequence';
 import convert from 'gulp-rsvg';
 import fs from 'fs';
 import handleErrors from '../lib/handle-errors';
@@ -32,7 +32,7 @@ const createSizeTask = function (variant, size) {
       suffix: size.suffix
     }))
     .pipe(cheerio({
-      run: ($, file, done) => {
+      run: ($) => {
         $('svg').attr({
           'height': size.box + 'pt',
           'width': size.box + 'pt'
@@ -42,7 +42,6 @@ const createSizeTask = function (variant, size) {
         $('svg > g').attr({
           'transform': units.translate
         });
-        done();
       },
       parserOptions: {
         xmlMode: true
@@ -51,12 +50,11 @@ const createSizeTask = function (variant, size) {
     .pipe(gulp.dest(path + '/android/'))
 
     .pipe(cheerio({
-      run: ($, file, done) => {
+      run: ($) => {
         $('svg').attr({
           'height': size.box + 'px',
           'width': size.box + 'px'
         });
-        done();
       },
       parserOptions: {
         xmlMode: true
