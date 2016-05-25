@@ -45,9 +45,9 @@ Instructure outputs:
 
 - Before you flatten shapes or vectorize strokes as described below, make a hidden copy of the original paths off to the side so that you can more easily come back and make changes later.
 
-- Export strokes to vector (Layer > Paths > Vectorize Stroke).
-
 - Flatten your shapes (Layer > Paths > Flatten).
+
+- Export strokes to vector (Layer > Convert to Outlines).
 
 - Don’t use borders on vectors, especially not inside/outside borders which aren’t supported in SVG.
 
