@@ -27,11 +27,10 @@ if [ ! $(program_is_installed sketchtool) ]
     curl -L https://raw.githubusercontent.com/cognitom/dotfiles/master/lib/sketchtool.sh | sudo sh
 fi
 
-if [ ! $(program_is_installed librsvg) ]
-  then
-    echo "-- install librsvg...";
-    brew install librsvg
-fi
+
+brew install librsvg
+
+export PKG_CONFIG_PATH=/opt/X11/lib/pkgconfig
 
 if [ ! $(program_is_installed nvm) ]
   then
