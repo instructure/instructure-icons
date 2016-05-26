@@ -12,8 +12,8 @@ import formatName from '../../lib/format-name';
 const createFontTask = function (variant) {
   const key = 'font-' + variant;
   const taskDir = './gulpfile.babel.js/tasks/generate-fonts/';
-  const destination = config.fonts.destination + variant;
-  const fontName = formatName(config.fonts.fontName) + formatName(variant);
+  const destination = path.normalize(config.fonts.destination + variant);
+  const fontName = formatName(config.fonts.fontName) + '-' + formatName(variant);
   const formats = config.fonts.formats;
   const className = config.fonts.className;
 
@@ -35,14 +35,14 @@ const createFontTask = function (variant) {
           }),
           fontName,
           className,
-          fontPath: path.normalize(path.relative(config.fonts.demoDestination, destination) + '/')
+          cssPath: path.normalize(path.relative(config.fonts.demoDestination, destination) + '/')
         };
         // build css
         gulp.src(taskDir + 'template.css')
           .pipe(consolidate('lodash', options))
           .on('error', handleErrors)
           .pipe(rename({ basename: fontName }))
-          .pipe(gulp.dest(config.fonts.demoDestination));
+          .pipe(gulp.dest(destination));
         // build example html
         gulp.src(taskDir + 'template.html')
           .pipe(consolidate('lodash', options))
