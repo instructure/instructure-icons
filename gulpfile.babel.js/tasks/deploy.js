@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import config from '../config';
 import pages from 'gulp-gh-pages';
-import sequence from 'gulp-sequence';
+import sequence from 'run-sequence';
 
 gulp.task('pre-deploy', function (cb) {
   sequence('build', 'webpack', cb)

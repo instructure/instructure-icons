@@ -1,11 +1,10 @@
 import gulp from 'gulp';
 import consolidate from 'gulp-consolidate';
 import fs from 'fs';
-import sequence from 'gulp-sequence';
+import sequence from 'run-sequence';
 import rename from 'gulp-rename';
 import config from '../../config';
 import handleErrors from '../../lib/handle-errors';
-import browserSync from 'browser-sync';
 import glob from 'glob';
 import path from 'path';
 

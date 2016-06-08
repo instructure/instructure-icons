@@ -1,5 +1,5 @@
 import gulp from 'gulp';
-import sequence from 'gulp-sequence';
+import sequence from 'run-sequence';
 import config from '../config';
 
 gulp.task('build-icons', function (cb) {

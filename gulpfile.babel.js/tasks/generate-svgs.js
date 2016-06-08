@@ -27,9 +27,8 @@ gulp.task('generate-svgs', function () {
     }))
     // clean up fills
     .pipe(cheerio({
-      run: ($, file, done) => {
+      run: ($) => {
         $('[fill]').removeAttr('fill');
-        done();
       },
       parserOptions: {
         xmlMode: true

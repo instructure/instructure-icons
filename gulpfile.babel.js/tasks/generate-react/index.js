@@ -1,7 +1,7 @@
 import gulp from 'gulp';
 import fs from 'fs';
 import glob from 'glob';
-import sequence from 'gulp-sequence';
+import sequence from 'run-sequence';
 import consolidate from 'gulp-consolidate';
 import rename from 'gulp-rename';
 import config from '../../config';
@@ -22,38 +22,55 @@ const taskDir = './gulpfile.babel.js/tasks/generate-react/';
 
 const baseIconFileName = config.react.componentBaseName + 'Base';
 
-const createReactComponentsTask = function (variant) {
-  const key = 'react-components-' + variant;
-  const destination = config.react.destination + variant;
+let glyphs = []
 
+const createReactSvgDataTask = function (variant) {
+  const key = 'react-svg-data-' + variant;
+  const destination = config.react.destination + variant;
   gulp.task(key, () => {
     return gulp.src(config.react.source + variant + '/*.svg')
       .pipe(cheerio({
-        run: function ($, file, done) {
+        run: function ($, file) {
           const $svg = $('svg')
           const componentName = toComponentName(path.basename(file.path, '.svg'), variant)
           const data = {
             baseIconPath: path.relative(destination, path.join(config.react.destination, baseIconFileName)),
             name: componentName,
             viewBox: $svg.attr('viewBox'),
-            svg: $svg.html()
+            svg: $svg.html(),
+            destination
           }
-          return gulp.src(taskDir + 'component.tmpl')
-            .pipe(consolidate('lodash', data))
-            .pipe(rename({ basename: componentName, extname: '.js' }))
-            .on('error', handleErrors)
-            .on('end', done)
-            .pipe(gulp.dest(destination));
+          glyphs.push(data)
         },
         parserOptions: {
           xmlMode: true
         }
       }))
       .on('error', handleErrors)
-  });
 
+  });
   return key;
 };
+
+const createReactComponentTask = function (data) {
+  const key = 'react-component-' + data.name;
+  gulp.task(key, () => {
+    return gulp.src(taskDir + 'component.tmpl')
+            .pipe(consolidate('lodash', data))
+            .pipe(rename({ basename: data.name, extname: '.js' }))
+            .on('error', handleErrors)
+            .pipe(gulp.dest(data.destination));
+  });
+  return key;
+}
+
+const createReactComponentsTasks = function () {
+  const tasks = []
+  glyphs.forEach(function (data) {
+    tasks.push(createReactComponentTask(data))
+  })
+  return tasks
+}
 
 const createReactBundle = function (variant) {
   variant = variant || '';
@@ -205,18 +222,30 @@ const copyBaseIconSrc = function () {
   return key;
 }
 
-gulp.task('generate-react', ['generate-svgs'], (cb) => {
+gulp.task('generate-react-svg-data', ['generate-svgs'], (cb) => {
   const variants = fs.readdirSync(config.react.source);
-  const componentTasks = [];
+  const tasks = []
+
+  glyphs = []
+
+  variants.forEach((variant) => {
+    tasks.push(createReactSvgDataTask(variant));
+  });
+
+  sequence(tasks, cb);
+});
+
+gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
+  const variants = fs.readdirSync(config.react.source);
+  const componentTasks = createReactComponentsTasks();
   const bundleTasks = [];
   const demoTasks = [];
   const buildTasks = [];
   const demoBuildTasks = [];
 
-  componentTasks.push(copyBaseIconSrc())
+  componentTasks.push(copyBaseIconSrc());
 
   variants.forEach((variant) => {
-    componentTasks.push(createReactComponentsTask(variant));
     bundleTasks.push(createReactBundle(variant));
     buildTasks.push(createComponentBuild(variant));
     demoTasks.push(createReactDemo(variant));
