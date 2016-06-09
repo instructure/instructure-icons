@@ -1,3 +1,4 @@
 node_modules
 __build__
 .publish
+npm-debug.log

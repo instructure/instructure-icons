@@ -3,7 +3,7 @@ export const capitalizeFirstLetter = function (string) {
 }
 
 export const toCamelCase = function (string) {
-  return string.replace(/(\-[a-z])/g, function($1) { return $1.toUpperCase().replace('-','') })
+  return string.replace(/([-:]\w)/g, function($1) { return $1.toUpperCase().replace('-','').replace(':', '') })
 }
 
 export default function formatName (name) {

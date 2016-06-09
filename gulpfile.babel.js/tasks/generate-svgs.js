@@ -22,7 +22,10 @@ gulp.task('generate-svgs', function () {
         { removeDesc: true },
         { removeTitle: true },
         { removeRasterImages: true },
-        { cleanupNumericValues: false }
+        { cleanupNumericValues: false },
+        { removeUnknownsAndDefaults: false },
+        { removeUselessStrokeAndFill: false },
+        { convertStyleToAttrs: true }
       ]
     }))
     // clean up fills

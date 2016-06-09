@@ -12,7 +12,7 @@ import webpackStrem from 'webpack-stream';
 import named from 'vinyl-named';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack'
-import formatName from '../../lib/format-name';
+import formatName, { toCamelCase } from '../../lib/format-name';
 
 const toComponentName = function (name, variant) {
   return formatName(config.react.componentBaseName) + formatName(name)  + formatName(variant);
@@ -23,6 +23,14 @@ const taskDir = './gulpfile.babel.js/tasks/generate-react/';
 const baseIconFileName = config.react.componentBaseName + 'Base';
 
 let glyphs = []
+
+const ATTR_REGEX = /(fill-rule|clip-path|fill-opacity|font-family|font-size|marker-end|marker-mid|marker-start|stop-color|stop-opacity|stroke-width|stroke-linecap|stroke-dasharray|stroke-opacity|text-anchor|xlink:href)=/g;
+
+function camelizeAttrs (svg) {
+  return svg.replace(ATTR_REGEX, function (line, attr) {
+    return toCamelCase(attr) + '='
+  });
+}
 
 const createReactSvgDataTask = function (variant) {
   const key = 'react-svg-data-' + variant;
@@ -37,7 +45,7 @@ const createReactSvgDataTask = function (variant) {
             baseIconPath: path.relative(destination, path.join(config.react.destination, baseIconFileName)),
             name: componentName,
             viewBox: $svg.attr('viewBox'),
-            svg: $svg.html(),
+            svg: camelizeAttrs($svg.html()),
             destination
           }
           glyphs.push(data)
