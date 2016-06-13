@@ -12,4 +12,7 @@ gulp.task('deploy', ['pre-deploy'], function () {
     .pipe(pages({
       remoteUrl: 'git@github.com:instructure/instructure-icons.git'
     }))
+    .pipe(pages({
+      remoteUrl: 'gerrit:instructure-icons'
+    }))
 });

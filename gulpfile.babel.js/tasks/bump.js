@@ -12,6 +12,6 @@ const bumpTask = function (type) {
     .pipe(tag())
 }
 
-gulp.task('patch', function () { return bumpTask('patch'); });
-gulp.task('feature', function () { return bumpTask('minor'); });
-gulp.task('release', function () { return bumpTask('major'); });
+gulp.task('bump-patch', function () { return bumpTask('patch'); });
+gulp.task('bump-minor', function () { return bumpTask('minor'); });
+gulp.task('bump-major', function () { return bumpTask('major'); });

@@ -20,6 +20,11 @@ export default function (env) {
       template: path.resolve(config.demoAppSource, 'index.html'), // Load a custom template
       inject: 'body', // Inject all scripts into the body,
       filename: 'index.html'
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify(env)
+      }
     })
   ];
 
@@ -60,7 +65,8 @@ export default function (env) {
     webpackConfig.entry = {
       demo: [
         path.resolve(config.demoAppSource, 'index.js')
-      ]
+      ],
+      'vendor': ['react', 'react-dom']
     };
 
     webpackConfig.output = {

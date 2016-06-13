@@ -4,7 +4,11 @@ import config from '../config';
 import spawn from 'gulp-spawn';
 import path from 'path';
 
-gulp.task('release', ['build'], function () {
+gulp.task('pre-release', function (cb) {
+  sequence('build', cb)
+})
+
+gulp.task('release', ['pre-release'], function (cb) {
   const cwd = process.cwd()
   return gulp.src([ cwd + '/package.json' ])
     .pipe(jeditor(function (json) {
