@@ -1,0 +1,215 @@
+@font-face {
+  font-family: "InstructureIcons-Line";
+  src: url('InstructureIcons-Line.eot');
+  src: url('InstructureIcons-Line.eot?#iefix') format('eot'),
+    url('InstructureIcons-Line.woff') format('woff'),
+    url('InstructureIcons-Line.ttf') format('truetype'),
+    url('InstructureIcons-Line.svg#InstructureIcons-Line') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.icon:before {
+  display: inline-block;
+  font-family: "InstructureIcons-Line";
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.icon-lg {
+  font-size: 1.3333333333333333em;
+  line-height: 0.75em;
+  vertical-align: -15%;
+}
+.icon-2x { font-size: 2em; }
+.icon-3x { font-size: 3em; }
+.icon-4x { font-size: 4em; }
+.icon-5x { font-size: 5em; }
+.icon-fw {
+  width: 1.2857142857142858em;
+  text-align: center;
+}
+
+.icon-add:before { content: "\EA01" }
+.icon-address-book:before { content: "\EA02" }
+.icon-analytics:before { content: "\EA03" }
+.icon-android:before { content: "\EA04" }
+.icon-announcement:before { content: "\EA05" }
+.icon-apple:before { content: "\EA06" }
+.icon-arrow-down:before { content: "\EA07" }
+.icon-arrow-left:before { content: "\EA08" }
+.icon-arrow-open-left:before { content: "\EA09" }
+.icon-arrow-open-right:before { content: "\EA0A" }
+.icon-arrow-right:before { content: "\EA0B" }
+.icon-arrow-up:before { content: "\EA0C" }
+.icon-assignment:before { content: "\EA0D" }
+.icon-audio:before { content: "\EA0E" }
+.icon-bookmark:before { content: "\EA0F" }
+.icon-calendar-day:before { content: "\EA10" }
+.icon-calendar-days:before { content: "\EA11" }
+.icon-calendar-month:before { content: "\EA12" }
+.icon-check-mark:before { content: "\EA13" }
+.icon-check-plus:before { content: "\EA14" }
+.icon-check:before { content: "\EA15" }
+.icon-clock:before { content: "\EA16" }
+.icon-cloud-lock:before { content: "\EA17" }
+.icon-collapse:before { content: "\EA18" }
+.icon-collection-save:before { content: "\EA19" }
+.icon-collection:before { content: "\EA1A" }
+.icon-commons:before { content: "\EA1B" }
+.icon-complete:before { content: "\EA1C" }
+.icon-compose:before { content: "\EA1D" }
+.icon-copy-course:before { content: "\EA1E" }
+.icon-copy:before { content: "\EA1F" }
+.icon-courses:before { content: "\EA20" }
+.icon-discussion-new:before { content: "\EA21" }
+.icon-discussion-reply-dark:before { content: "\EA22" }
+.icon-discussion-reply:before { content: "\EA23" }
+.icon-discussion-search:before { content: "\EA24" }
+.icon-discussion-x:before { content: "\EA25" }
+.icon-discussion:before { content: "\EA26" }
+.icon-document:before { content: "\EA27" }
+.icon-download:before { content: "\EA28" }
+.icon-drag-handle:before { content: "\EA29" }
+.icon-drop-down:before { content: "\EA2A" }
+.icon-edit:before { content: "\EA2B" }
+.icon-educators:before { content: "\EA2C" }
+.icon-email:before { content: "\EA2D" }
+.icon-empty:before { content: "\EA2E" }
+.icon-end:before { content: "\EA2F" }
+.icon-equation:before { content: "\EA30" }
+.icon-equella:before { content: "\EA31" }
+.icon-expand-items:before { content: "\EA32" }
+.icon-expand:before { content: "\EA33" }
+.icon-export-content:before { content: "\EA34" }
+.icon-export:before { content: "\EA35" }
+.icon-eye:before { content: "\EA36" }
+.icon-facebook-boxed:before { content: "\EA37" }
+.icon-facebook:before { content: "\EA38" }
+.icon-files-copyright:before { content: "\EA39" }
+.icon-files-creative-commons:before { content: "\EA3A" }
+.icon-files-fair-use:before { content: "\EA3B" }
+.icon-files-obtained-permission:before { content: "\EA3C" }
+.icon-files-public-domain:before { content: "\EA3D" }
+.icon-filmstrip:before { content: "\EA3E" }
+.icon-flag:before { content: "\EA3F" }
+.icon-folder-locked:before { content: "\EA40" }
+.icon-folder:before { content: "\EA41" }
+.icon-forward:before { content: "\EA42" }
+.icon-github:before { content: "\EA43" }
+.icon-gradebook-export:before { content: "\EA44" }
+.icon-gradebook-import:before { content: "\EA45" }
+.icon-gradebook:before { content: "\EA46" }
+.icon-group:before { content: "\EA47" }
+.icon-hamburger:before { content: "\EA48" }
+.icon-heart:before { content: "\EA49" }
+.icon-home:before { content: "\EA4A" }
+.icon-hour-glass:before { content: "\EA4B" }
+.icon-image:before { content: "\EA4C" }
+.icon-import:before { content: "\EA4D" }
+.icon-indent-2:before { content: "\EA4E" }
+.icon-indent:before { content: "\EA4F" }
+.icon-info:before { content: "\EA50" }
+.icon-instructure:before { content: "\EA51" }
+.icon-integrations:before { content: "\EA52" }
+.icon-invitation:before { content: "\EA53" }
+.icon-like:before { content: "\EA54" }
+.icon-link:before { content: "\EA55" }
+.icon-linkedin:before { content: "\EA56" }
+.icon-lock:before { content: "\EA57" }
+.icon-lti:before { content: "\EA58" }
+.icon-mark-as-read:before { content: "\EA59" }
+.icon-masquerade:before { content: "\EA5A" }
+.icon-materials-required-light:before { content: "\EA5B" }
+.icon-materials-required:before { content: "\EA5C" }
+.icon-mature-light:before { content: "\EA5D" }
+.icon-mature:before { content: "\EA5E" }
+.icon-media:before { content: "\EA5F" }
+.icon-message:before { content: "\EA60" }
+.icon-mini-arrow-down:before { content: "\EA61" }
+.icon-mini-arrow-left:before { content: "\EA62" }
+.icon-mini-arrow-right:before { content: "\EA63" }
+.icon-mini-arrow-up:before { content: "\EA64" }
+.icon-minimize:before { content: "\EA65" }
+.icon-module:before { content: "\EA66" }
+.icon-more:before { content: "\EA67" }
+.icon-ms-excel:before { content: "\EA68" }
+.icon-ms-ppt:before { content: "\EA69" }
+.icon-ms-word:before { content: "\EA6A" }
+.icon-muted:before { content: "\EA6B" }
+.icon-next-unread:before { content: "\EA6C" }
+.icon-not-graded:before { content: "\EA6D" }
+.icon-note-dark:before { content: "\EA6E" }
+.icon-note-light:before { content: "\EA6F" }
+.icon-off:before { content: "\EA70" }
+.icon-outdent:before { content: "\EA71" }
+.icon-outdent2:before { content: "\EA72" }
+.icon-paperclip:before { content: "\EA73" }
+.icon-partial:before { content: "\EA74" }
+.icon-pdf:before { content: "\EA75" }
+.icon-peer-graded:before { content: "\EA76" }
+.icon-peer-review:before { content: "\EA77" }
+.icon-pin:before { content: "\EA78" }
+.icon-pinterest:before { content: "\EA79" }
+.icon-plus:before { content: "\EA7A" }
+.icon-post-to-sis:before { content: "\EA7B" }
+.icon-prerequisite:before { content: "\EA7C" }
+.icon-printer:before { content: "\EA7D" }
+.icon-publish:before { content: "\EA7E" }
+.icon-question:before { content: "\EA7F" }
+.icon-quiz-stats-avg:before { content: "\EA80" }
+.icon-quiz-stats-deviation:before { content: "\EA81" }
+.icon-quiz-stats-high:before { content: "\EA82" }
+.icon-quiz-stats-low:before { content: "\EA83" }
+.icon-quiz-stats-time:before { content: "\EA84" }
+.icon-quiz:before { content: "\EA85" }
+.icon-refresh:before { content: "\EA86" }
+.icon-remove-from-collection:before { content: "\EA87" }
+.icon-replied:before { content: "\EA88" }
+.icon-reply-2:before { content: "\EA89" }
+.icon-reply-all-2:before { content: "\EA8A" }
+.icon-reply:before { content: "\EA8B" }
+.icon-reset:before { content: "\EA8C" }
+.icon-rss-add:before { content: "\EA8D" }
+.icon-rss:before { content: "\EA8E" }
+.icon-rubric-dark:before { content: "\EA8F" }
+.icon-rubric:before { content: "\EA90" }
+.icon-search-address-book:before { content: "\EA91" }
+.icon-search:before { content: "\EA92" }
+.icon-settings-2:before { content: "\EA93" }
+.icon-settings:before { content: "\EA94" }
+.icon-skype:before { content: "\EA95" }
+.icon-speed-grader:before { content: "\EA96" }
+.icon-standards:before { content: "\EA97" }
+.icon-star-light:before { content: "\EA98" }
+.icon-star:before { content: "\EA99" }
+.icon-stats:before { content: "\EA9A" }
+.icon-student-view:before { content: "\EA9B" }
+.icon-syllabus:before { content: "\EA9C" }
+.icon-table:before { content: "\EA9D" }
+.icon-tag:before { content: "\EA9E" }
+.icon-target:before { content: "\EA9F" }
+.icon-text-centered:before { content: "\EAA0" }
+.icon-text-left:before { content: "\EAA1" }
+.icon-text-right:before { content: "\EAA2" }
+.icon-text:before { content: "\EAA3" }
+.icon-timer:before { content: "\EAA4" }
+.icon-toggle-left:before { content: "\EAA5" }
+.icon-toggle-right:before { content: "\EAA6" }
+.icon-trash:before { content: "\EAA7" }
+.icon-trouble:before { content: "\EAA8" }
+.icon-untitled-icon:before { content: "\EAA9" }
+.icon-user-add:before { content: "\EAAA" }

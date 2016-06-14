@@ -1,5 +1,5 @@
 {
-  "symbols": ["add", "arrow-left"],
+  "symbols": ["add", "address-book", "analytics", "android", "announcement", "apple", "arrow-down", "arrow-left", "arrow-open-left", "arrow-open-right", "arrow-right", "arrow-up", "assignment", "audio", "bookmark", "calendar-day", "calendar-days", "calendar-month", "check-dark", "check-mark", "check-plus", "check", "clock", "cloud-lock", "collapse", "collection-save", "collection", "commons", "complete", "compose", "copy-course", "copy", "courses", "discussion-check", "discussion-new", "discussion-reply-2", "discussion-reply-dark", "discussion-reply", "discussion-search", "discussion-x", "discussion", "document", "download", "drag-handle", "drop-down", "edit", "educators", "email", "empty", "end", "equation", "equella", "expand-items", "expand", "export-content", "export", "eye", "facebook-boxed", "facebook", "files-copyright", "files-creative-commons", "files-fair-use", "files-obtained-permission", "files-public-domain", "filmstrip", "flag", "folder-locked", "folder", "forward", "github", "gradebook-export", "gradebook-import", "gradebook", "group-dark-new", "group-new", "group", "hamburger", "heart", "home", "hour-glass", "image", "import-content", "import", "indent-2", "indent", "info", "instructure", "integrations", "invitation", "like", "link", "linkedin", "lock", "lti", "mark-as-read", "masquerade", "materials-required-light", "materials-required", "mature-light", "mature", "media", "message", "mini-arrow-down", "mini-arrow-left", "mini-arrow-right", "mini-arrow-up", "minimize", "module", "more", "ms-excel", "ms-ppt", "ms-word", "muted", "next-unread", "not-graded", "note-dark", "note-light", "off", "outdent", "outdent2", "paperclip", "partial", "pdf", "peer-graded", "peer-review", "pin", "pinterest", "plus", "post-to-sis", "prerequisite", "printer", "publish", "question", "quiz-stats-avg", "quiz-stats-deviation", "quiz-stats-high", "quiz-stats-low", "quiz-stats-time", "quiz", "refresh", "remove-from-collection", "replied", "reply-2", "reply-all-2", "reply", "reset", "rss-add", "rss", "rubric-dark", "rubric", "search-address-book", "search", "settings-2", "settings", "skype", "speed-grader", "standards", "star-light", "star", "stats", "student-view", "syllabus", "table", "tag", "target", "text-centered", "text-left", "text-right", "text", "timer", "toggle-left", "toggle-right", "trash", "trouble", "twitter-boxed", "twitter", "unknown2", "unlock", "unmuted", "unpublish", "unpublished", "updown", "upload", "user-add", "user", "video", "warning", "windows", "wordpress", "x", "zipped"],
   "formats": [{
     "name": "SVG",
     "demos": [{
@@ -24,11 +24,11 @@
   }, {
     "name": "Font",
     "demos": [{
-      "path": "demos/fonts/canvas-iconsLine.html",
-      "name": "canvas-iconsLine"
+      "path": "demos/fonts/InstructureIcons-Line.html",
+      "name": "InstructureIcons-Line"
     }, {
-      "path": "demos/fonts/canvas-iconsSolid.html",
-      "name": "canvas-iconsSolid"
+      "path": "demos/fonts/InstructureIcons-Solid.html",
+      "name": "InstructureIcons-Solid"
     }]
   }, {
     "name": "React",
