@@ -1,6 +1,5 @@
 import gulp from 'gulp';
 import bump from 'gulp-bump';
-import tag from 'gulp-tag-version';
 import git from 'gulp-git';
 
 const bumpTask = function (type) {
@@ -9,7 +8,6 @@ const bumpTask = function (type) {
     .pipe(bump({ type }))
     .pipe(gulp.dest(cwd))
     .pipe(git.commit('Version Bump'))
-    .pipe(tag())
 }
 
 gulp.task('bump-patch', function () { return bumpTask('patch'); });
