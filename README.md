@@ -83,9 +83,9 @@ If you ran `npm start`, you're already running the web app. Just visit [localhos
 
 ### Release Process
 
-1. Run `gulp bump-patch`, `gulp bump-minor` or `gulp bump-major` depending on what type of release you'd like to do.
-2. After the commit with the version bump is merged, run `gulp release`.
-3. Run `gulp deploy` to update the docs and examples on gh-pages.
+1. Run `npm run bump-patch`, `npm run bump-minor` or `npm run bump-major` depending on what type of release you'd like to do.
+2. After the commit with the version bump is merged, run `npm run release`.
+3. Run `npm run deploy` to update the docs and examples on gh-pages.
 
 ### Inspiration
 

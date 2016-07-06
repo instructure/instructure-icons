@@ -1,14 +1,11 @@
 import gulp from 'gulp';
 import jeditor from 'gulp-json-editor';
 import config from '../config';
-import spawn from 'gulp-spawn';
+import { spawn } from 'child_process';
 import path from 'path';
+import sequence from 'run-sequence';
 
-gulp.task('pre-release', function (cb) {
-  sequence('build', cb)
-})
-
-gulp.task('release', ['pre-release'], function (cb) {
+gulp.task('copy-pkg', function () {
   const cwd = process.cwd()
   return gulp.src([ cwd + '/package.json' ])
     .pipe(jeditor(function (json) {
@@ -17,19 +14,20 @@ gulp.task('release', ['pre-release'], function (cb) {
       json.main = path.join('./', path.relative(config.destination, config.react.dist), 'index.js')
       return json
     }))
-    .pipe(gulp.dest(config.destination))
-    .pipe(spawn({
-      cmd: 'cp',
-      args: [
-        'README.md',
-        config.destination
-      ]
-    }))
-    .pipe(spawn({
-      cmd: 'npm',
-      args: [
-        'publish',
-        config.destination
-      ]
-    }))
+    .pipe(gulp.dest(config.destination));
+});
+
+gulp.task('copy-readme', function () {
+  const cwd = process.cwd()
+  return gulp.src([ cwd + '/README.md' ])
+    .pipe(gulp.dest(config.destination));
+});
+
+gulp.task('pre-release', function (cb) {
+  sequence('build', 'copy-pkg', 'copy-readme', cb);
+});
+
+gulp.task('release', ['pre-release'], function (cb) {
+  spawn('npm', [ 'publish', config.destination ], { stdio: 'inherit' })
+    .on('close', cb);
 });
