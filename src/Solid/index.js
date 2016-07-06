@@ -168,3 +168,4 @@ export IconToggleRightSolid from './IconToggleRightSolid.js';
 export IconTrashSolid from './IconTrashSolid.js';
 export IconTroubleSolid from './IconTroubleSolid.js';
 export IconUserAddSolid from './IconUserAddSolid.js';
+export IconXSolid from './IconXSolid.js';

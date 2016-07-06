@@ -168,3 +168,4 @@ export IconTrashLine from './IconTrashLine.js';
 export IconTroubleLine from './IconTroubleLine.js';
 export IconUntitledIconLine from './IconUntitledIconLine.js';
 export IconUserAddLine from './IconUserAddLine.js';
+export IconXLine from './IconXLine.js';
