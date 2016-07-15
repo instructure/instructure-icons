@@ -171,10 +171,6 @@ const createComponentBuild = function (variant) {
               amd: 'react-dom'
             }
           }
-        ],
-        plugins: [
-          new webpack.optimize.UglifyJsPlugin(),
-          new webpack.optimize.OccurenceOrderPlugin()
         ]
       }))
       .on('error', handleErrors)
