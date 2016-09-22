@@ -43,6 +43,12 @@ const createFontTask = function (variant) {
           .on('error', handleErrors)
           .pipe(rename({ basename: fontName }))
           .pipe(gulp.dest(destination));
+        // build sass map with icon names and font unicode characters
+        gulp.src(taskDir + 'template.scss')
+          .pipe(consolidate('lodash', options))
+          .on('error', handleErrors)
+          .pipe(rename({ basename: fontName + '_icon-map' }))
+          .pipe(gulp.dest(destination));
         // build example html
         gulp.src(taskDir + 'template.html')
           .pipe(consolidate('lodash', options))
