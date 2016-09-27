@@ -33,6 +33,7 @@ const createFontTask = function (variant) {
               codepoint: glyph.unicode[0].charCodeAt(0)
             };
           }),
+          variant,
           fontName,
           className,
           cssPath: path.normalize(path.relative(config.fonts.demoDestination, destination) + '/')
