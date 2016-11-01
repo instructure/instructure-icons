@@ -8,7 +8,8 @@ import config from '../../config';
 import cheerio from 'gulp-cheerio';
 import handleErrors from '../../lib/handle-errors';
 import path from 'path';
-import webpackStrem from 'webpack-stream';
+import webpackStream from 'webpack-stream';
+import babel from 'gulp-babel'
 import named from 'vinyl-named';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack'
@@ -140,7 +141,7 @@ const createComponentBuild = function (variant) {
   gulp.task(key, () => {
     return gulp.src(glob.sync(source + '/*.js'))
       .pipe(named())
-      .pipe(webpackStrem({
+      .pipe(webpackStream({
         module: {
           loaders: [
             {
@@ -186,7 +187,7 @@ const createDemoBuild = function (variant) {
   gulp.task(key, () => {
     return gulp.src(config.react.demoDestination + variant + '.js')
       .pipe(named())
-      .pipe(webpackStrem({
+      .pipe(webpackStream({
         module: {
           loaders: [
             {
@@ -209,6 +210,18 @@ const createDemoBuild = function (variant) {
       }))
       .on('error', handleErrors)
       .pipe(gulp.dest(config.react.demoDestination))
+  });
+
+  return key;
+}
+
+const createReactLib = function () {
+  const key = 'react-lib';
+
+  gulp.task(key, () => {
+    return gulp.src(config.react.destination + '**/*.js')
+      .pipe(babel())
+      .pipe(gulp.dest(config.react.lib))
   });
 
   return key;
@@ -258,6 +271,7 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
 
   bundleTasks.push(createReactBundle());
   buildTasks.push(createComponentBuild());
+  bundleTasks.push(createReactLib());
 
   sequence(componentTasks, bundleTasks, buildTasks, demoTasks, demoBuildTasks, cb);
 });
