@@ -77,7 +77,7 @@ export default class Demo extends Component {
         <nav className={styles.demoNav}>
           { this.state.formats.map(format => this.renderFormat(format)) }
         </nav>
-        <iframe src={this.state.currentDemo || this.defaultDemo()} className={styles.demo}></iframe>
+        <iframe src={this.state.currentDemo || this.defaultDemo()} className={styles.demo} />
       </div>
     );
   }
