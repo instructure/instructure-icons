@@ -74,6 +74,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -85,6 +87,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -98,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -130,25 +134,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -589,7 +599,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconAddressBookLine() {
 	    _classCallCheck(this, IconAddressBookLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconAddressBookLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconAddressBookLine.__proto__ || Object.getPrototypeOf(IconAddressBookLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconAddressBookLine, [{
@@ -600,13 +610,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconAddressBookLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement(
-	          'g',
-	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
-	          _react2.default.createElement('path', { d: 'M800 880c88.32 0 160-71.68 160-160s-71.68-160-160-160-160 71.68-160 160 71.68 160 160 160z' }),
-	          _react2.default.createElement('path', { d: 'M1440 640h160V480h-160v160zm0 320h160V800h-160v160zM320 1600V320h960l.16 1280H320zM1440 320c0-88.32-71.76-160-160-160H320c-88.24 0-160 71.68-160 160v1280c0 88.24 71.76 160 160 160h960c88.24 0 160-71.76 160-160v-480h320V320h-320z' }),
-	          _react2.default.createElement('path', { d: 'M800 960c-147.28 0-240 92.72-240 240h480c0-147.28-92.72-240-240-240' })
-	        )
+	        _react2.default.createElement('path', { d: 'M320 160h960v320H320V160zm160 160h240v160H480V320zm400 0h240v160H880V320zM320 480c-88.32 0-160 71.6-160 160v960c0 88.32 71.68 160 160 160h1280c88.32 0 160-71.68 160-160V640c0-88.4-71.68-160-160-160H320zm0 160h1280v960H320V640zm640 160c-88 0-160 71.68-160 160s72 160 160 160 160-71.68 160-160-72-160-160-160zm-209 320c-106 5.333-191 98.133-191 213.333V1440h800v-106.667c0-115.2-84-208-191-213.333-54 65.067-128 106.667-209 106.667s-155-41.6-209-106.667z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

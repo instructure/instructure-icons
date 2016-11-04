@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(78);
+	module.exports = __webpack_require__(84);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 78:
+/***/ 84:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconFolderLockedLine() {
 	    _classCallCheck(this, IconFolderLockedLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconFolderLockedLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconFolderLockedLine.__proto__ || Object.getPrototypeOf(IconFolderLockedLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconFolderLockedLine, [{
@@ -612,7 +622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconFolderLockedLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M320 1480V440h360l132 176c30 40.08 77.92 64 128 64h660l.08 800H320zm1280-960H940L808 344c-30-40.08-77.92-64-128-64H320c-88.24 0-160 71.84-160 160v1040c0 88.24 71.76 160 160 160h1280c88.24 0 160-71.76 160-160V680c0-88.16-71.76-160-160-160zm-320 880H640v-400h80v-10.4c0-132.4 107.68-240 240-240s240 107.6 240 240v10.4h80v400zM880 989.568v50.4h160v-50.4c0-44.08-35.92-80-80-80s-80 35.92-80 80z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M851.68 240H320c-88.32 0-160 71.6-160 160v1200c0 44.16 35.84 80 80 80h1360c88.4 0 160-71.6 160-160V560c0-44.16-35.84-80-80-80h-624l-55.76-139.44C975.92 279.84 917.12 240 851.68 240m0 160l55.76 139.44C931.76 600.16 990.56 640 1056 640h544v880H320V400h531.68M733.333 902.857v91.429h-16.525c-42.42 0-76.808 34.385-76.808 76.805v212.104c0 42.418 34.384 76.805 76.801 76.805H1123.2c42.416 0 76.801-34.385 76.801-76.805v-212.104c0-42.419-34.39-76.805-76.808-76.805h-16.525v-91.429c0-100.571-84-182.857-186.667-182.857s-186.667 82.286-186.667 182.857zM920 811.43c52.267 0 93.333 40.228 93.333 91.428v91.429H826.667v-91.429c0-51.2 41.066-91.428 93.333-91.428z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

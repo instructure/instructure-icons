@@ -65,13 +65,21 @@ export default class BaseIcon extends Component {
       title,
       width,
       height,
-      viewBox
+      viewBox,
+      ...props
     } = this.props
+
+    delete props.name
+    delete props.children
+    delete props.desc
+
     const style = {
       fill: 'currentColor'
     }
+
     return (
       <svg
+        {...props}
         style={style}
         width={width}
         height={height}

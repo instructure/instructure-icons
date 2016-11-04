@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(77);
+	module.exports = __webpack_require__(83);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 77:
+/***/ 83:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconFolderLine() {
 	    _classCallCheck(this, IconFolderLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconFolderLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconFolderLine.__proto__ || Object.getPrototypeOf(IconFolderLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconFolderLine, [{
@@ -612,7 +622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconFolderLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1597.6 522.118H960L844.674 371.075C817.656 317.115 762.504 283 702.091 283H242.7c-44.074 0-79.7 35.629-79.7 79.706v1115.882C163 1566.584 234.411 1638 322.4 1638h1275.2c87.989 0 159.4-71.416 159.4-159.412V681.53c0-87.995-71.411-159.411-159.4-159.411z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M851.68 240H320c-88.32 0-160 71.6-160 160v1200c0 44.16 35.84 80 80 80h1360c88.4 0 160-71.6 160-160V560c0-44.16-35.84-80-80-80h-624l-55.76-139.44C975.92 279.84 917.12 240 851.68 240m0 160l55.76 139.44C931.76 600.16 990.56 640 1056 640h544v880H320V400h531.68', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

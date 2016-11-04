@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(100);
+	module.exports = __webpack_require__(108);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 100:
+/***/ 108:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconLikeLine() {
 	    _classCallCheck(this, IconLikeLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconLikeLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconLikeLine.__proto__ || Object.getPrototypeOf(IconLikeLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconLikeLine, [{
@@ -612,7 +622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconLikeLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1533.278 1520h-557.92L640 1385.84V960h80c32 0 60.96-19.04 73.52-48.48l219.2-511.52h107.28v320c0 44.16 35.76 80 80 80h464.158l-130.88 720zM320 1520h160V880H320v640zm1501.437-851.28c-15.2-18.16-37.68-28.72-61.44-28.72h-479.999V320c0-44.16-35.76-80-80-80h-240c-32 0-60.96 19.04-73.52 48.4L667.28 800H640c0-44.16-35.76-80-80-80H240C195.76 720 160 755.84 160 800v800c0 44.16 35.76 80 80 80h320c44.24 0 80-35.84 80-80v-41.76l290.319 116.08c9.36 3.76 19.52 5.68 29.68 5.68h639.999c38.64 0 71.76-27.68 78.72-65.68l160-880c4.24-23.36-2.16-47.36-17.28-65.6z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M1263.959 160c-91.22 0-175.477 57.68-182.599 152.08-15.603 208.88-193.24 307.52-261.095 359.76-67.935 52.24-322.148 121.84-322.148 301.68v562.8C510.119 1701.2 910.364 1760 1204.186 1760c88.819 0 167.876-5.36 223.567-14.8 240.291-40.64 400.325-713.68 395.124-812.32-5.281-98.56-201.883-197.2-368.958-197.2 0 0 46.97-52.24 46.97-284.32-5.681-206.64-126.427-291.36-236.93-291.36m.08 160c45.37 0 74.095 49.92 76.816 133.68-.16 128.48-16.564 182.24-21.045 194.56-29.366 45.04-34.407 102.4-12.082 152.48 25.685 57.76 82.977 94.96 146.19 94.96 85.779 0 172.837 38.16 206.605 65.44-8.322 58-37.848 194.4-90.9 338-79.136 214-151.472 281.92-168.515 288.32-47.13 8-118.905 12.56-196.922 12.56-279.82 0-489.544-52.56-546.036-93.36V973.52c0-37.44 110.664-92.72 157.874-116.32 39.208-19.6 73.135-36.48 101.781-58.56 7.042-5.36 15.444-11.28 24.806-18 90.579-64.4 279.019-198.56 296.782-453.68 2.08-2.16 11.043-6.96 24.646-6.96zM178.017 1760H338.05c44.17 0 80.017-35.84 80.017-80V880c0-44.16-35.848-80-80.017-80H178.017C133.847 800 98 835.84 98 880v800c0 44.16 35.848 80 80.017 80z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

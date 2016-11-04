@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(196);
+	module.exports = __webpack_require__(211);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 196:
+/***/ 211:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconUserLine() {
 	    _classCallCheck(this, IconUserLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconUserLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconUserLine.__proto__ || Object.getPrototypeOf(IconUserLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconUserLine, [{
@@ -612,7 +622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconUserLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M960.16 960.48c-176.48 0-320-143.52-320-320 0-176.4 143.52-320 320-320s320 143.6 320 320c0 176.48-143.52 320-320 320zm0-480c-88.24 0-160 71.68-160 160 0 88.24 71.76 160 160 160s160-71.76 160-160c0-88.32-71.76-160-160-160zm640 1120h-1280v-80c0-282.64 263.2-480 640-480s640 197.36 640 480v80zm-1107.28-160h934.64c-47.84-144.64-226.64-240-467.28-240s-419.52 95.36-467.36 240z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M1490.88 1005.124c-131.68 143.999-320.4 234.879-530.88 234.879-210.48 0-399.28-90.88-530.96-234.88C232.48 1030.404 80 1196.484 80 1400.003V1880h1760v-479.998c0-203.52-152.48-369.598-349.12-394.878m46.88 177.519c84.4 37.6 142.24 121.76 142.24 217.359V1720H240v-320c0-95.598 57.76-179.758 142.16-217.358 159.6 139.12 365.28 217.359 577.84 217.359 212.48 0 418.16-78.24 577.76-217.36M959.968 40c-265.12 0-480 214.879-480 479.998s214.88 479.998 480 479.998 480-214.88 480-479.998c0-265.12-214.88-479.998-480-479.998m0 159.999c176.48 0 320 143.52 320 319.999s-143.52 319.999-320 319.999-320-143.52-320-320c0-176.478 143.52-319.998 320-319.998', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

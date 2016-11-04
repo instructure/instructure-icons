@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(122);
+	module.exports = __webpack_require__(136);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 122:
+/***/ 136:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconMsWordLine() {
 	    _classCallCheck(this, IconMsWordLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconMsWordLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconMsWordLine.__proto__ || Object.getPrototypeOf(IconMsWordLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconMsWordLine, [{
@@ -612,7 +622,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconMsWordLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M452.433 308.286h724.5V598.03h289.634v72.228h144.402V495.27L1279.201 163H452.51c-79.888 0-144.478 65.057-144.478 144.909v362.348h144.402v-361.97zm1014.134 1303.428H452.433v-72.229H308.031v72.606c0 79.881 64.59 144.909 144.478 144.909H1466.49c79.888 0 144.478-65.028 144.478-144.909v-72.606h-144.402v72.229zM1466.492 960H1684V814.714h-217.508c-119.817 0-217.358 97.879-217.358 217.74v144.91c0 119.86 97.541 217.665 217.358 217.665H1684v-145.286h-217.508c-39.93 0-72.126-32.37-72.126-72.38v-144.908c0-39.98 32.196-72.455 72.126-72.455zM669.79 1104.871c0-159.806-129.963-290.157-289.71-290.157H235v580.315h145.08c159.747 0 289.71-130.352 289.71-290.158zM380.232 960c79.67 0 144.855 65.057 144.855 144.909 0 79.882-65.185 144.91-144.855 144.91V960zm361.835 72.455v144.908c0 119.862 97.617 217.365 217.433 217.365 119.816 0 217.433-97.503 217.433-217.365v-144.908c0-119.862-97.617-217.364-217.433-217.364-119.816 0-217.433 97.502-217.433 217.364zm289.634 0v144.908c0 40.01-32.271 72.455-72.201 72.455-39.93 0-72.201-32.445-72.201-72.455v-144.908c0-39.98 32.271-72.455 72.201-72.455 39.93 0 72.201 32.474 72.201 72.455z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement(
+	          'g',
+	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
+	          _react2.default.createElement('path', { d: 'M1271.165 964.73h125.252v-82.273h-125.252c-68.996 0-125.165 55.427-125.165 123.302v82.058c0 67.874 56.169 123.258 125.165 123.258h125.252v-82.272h-125.252c-22.994 0-41.533-18.33-41.533-40.986v-82.058c0-22.64 18.54-41.03 41.533-41.03zm-458.792 82.036c0-90.494-74.839-164.309-166.828-164.309H562v328.618h83.545c91.989 0 166.828-73.815 166.828-164.309zM646 965.457c45.878 0 83.415 36.84 83.415 82.058 0 45.235-37.537 82.059-83.415 82.059V965.457zm208 40.088v82.058c0 67.875 56.212 123.088 125.208 123.088s125.209-55.213 125.209-123.088v-82.058c0-67.875-56.213-123.088-125.209-123.088-68.996 0-125.208 55.213-125.208 123.088zm167.154.941v82.059c0 22.656-18.584 41.029-41.577 41.029-22.994 0-41.577-18.373-41.577-41.03v-82.058c0-22.64 18.583-41.029 41.577-41.029 22.993 0 41.577 18.39 41.577 41.03zM1520 1680H400v-80H240v80c0 88.24 71.76 160 160 160h1120c88.24 0 160-71.76 160-160v-80h-160v80z' }),
+	          _react2.default.createElement('path', { d: 'M400 1600H240V240c0-88.16 71.76-160 160-160h913.12L1680 446.88V1600h-160V560h-320V240H400v1360z' })
+	        )
 	      );
 	    }
 	  }]);

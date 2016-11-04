@@ -9,7 +9,7 @@ export default class IconMiniArrowLeftSolid extends Component {
         name="IconMiniArrowLeftSolid"
         viewBox="0 0 1920 1920">
         
-    <path d="M925.971 812.587c18.794-27.293 49.27-27.285 68.058 0l193.905 281.593c18.794 27.292 7.168 49.417-25.976 49.417H758.042c-33.14 0-44.765-22.133-25.976-49.417L925.97 812.587z" stroke="none" strokeWidth="1" fillRule="evenodd"/>
+    <path d="M694.018 926.244c-27.296 18.796-27.3 49.268 0 68.067l509.835 351.074c27.297 18.796 49.425 7.18 49.425-25.96V601.13c0-33.133-22.125-44.758-49.425-25.96L694.018 926.245z" stroke="none" strokeWidth="1" fillRule="evenodd"/>
 
       </BaseIcon>
     )

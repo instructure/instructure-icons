@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(103);
+	module.exports = __webpack_require__(111);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 103:
+/***/ 111:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconLockLine() {
 	    _classCallCheck(this, IconLockLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconLockLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconLockLine.__proto__ || Object.getPrototypeOf(IconLockLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconLockLine, [{
@@ -612,7 +622,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconLockLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1360.16 1600l-.16-560H560v560h800.16zM720 880h480V560c0-132.32-107.68-240-240-240S720 427.68 720 560v320zm800 160v560c0 88.24-71.68 160-160 160H560c-88.32 0-160-71.76-160-160v-560c0-88.32 71.68-160 160-160V560c0-220.56 179.44-400 400-400s400 179.44 400 400v320c88.32 0 160 71.68 160 160zm-440 280c0 66.24-53.76 120-120 120-66.24 0-120-53.76-120-120 0-66.24 53.76-120 120-120 66.24 0 120 53.76 120 120z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement(
+	          'g',
+	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
+	          _react2.default.createElement('path', { d: 'M1570 1684H351V922h1219v762zM1189 617.143V846H732V617.143c0-128 100.54-228.572 228.5-228.572S1189 489.143 1189 617.143zM1582.508 846H1418V617.143C1418 365.714 1212.35 160 961 160S504 365.714 504 617.143V846H339.492c-31.501 0-58.063 22.541-63.469 52.467-.044.239-.089.477-.13.716a61.017 61.017 0 0 0-.466 3.282 61.95 61.95 0 0 0-.125 1.148 62.381 62.381 0 0 0-.228 3.209 62.853 62.853 0 0 0-.074 2.888v786.294c0 35.344 29.155 63.996 64.502 63.996h1242.996c35.347 0 63.502-28.65 63.502-63.996V909.71c0-35.344-28.151-63.71-63.492-63.71z' }),
+	          _react2.default.createElement('path', { d: 'M961.436 1519c-113.183 0-204.936-91.781-204.936-205s91.753-205 204.936-205c113.182 0 204.936 91.781 204.936 205s-91.754 205-204.936 205m0-486c-75.045 0-145.598 29.232-198.66 82.311C709.72 1168.384 680.5 1238.947 680.5 1314c0 75.052 29.22 145.615 82.276 198.688 53.062 53.079 123.615 82.312 198.66 82.312s145.597-29.233 198.66-82.312c53.056-53.073 82.276-123.636 82.276-198.688 0-75.053-29.22-145.616-82.276-198.689-53.063-53.079-123.615-82.311-198.66-82.311' })
+	        )
 	      );
 	    }
 	  }]);

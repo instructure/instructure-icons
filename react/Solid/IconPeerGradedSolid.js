@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(135);
+	module.exports = __webpack_require__(149);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 135:
+/***/ 149:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconPeerGradedSolid() {
 	    _classCallCheck(this, IconPeerGradedSolid);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconPeerGradedSolid).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconPeerGradedSolid.__proto__ || Object.getPrototypeOf(IconPeerGradedSolid)).apply(this, arguments));
 	  }
 
 	  _createClass(IconPeerGradedSolid, [{
@@ -612,7 +622,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconPeerGradedSolid',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1840 231.986L1727.959 120l-340.165 339.999-181.69-181.602-112.042 111.986 293.732 293.589L1840 231.986zm-471.699 1086.285c59.508-43.242 98.73-112.857 98.73-191.897 0-130.995-106.653-237.596-237.711-237.596-131.059 0-237.712 106.601-237.712 237.596 0 79.04 39.223 148.655 98.73 191.897-104.99 51.637-177.967 158.714-177.967 283.293v79.198c0 43.718 35.498 79.198 79.237 79.198h475.423c43.739 0 79.237-35.48 79.237-79.198v-79.198c0-124.58-72.977-231.656-177.967-283.293zm-455.93 45.737c0 43.718-35.498 79.199-79.237 79.199h-79.237v237.595c0 43.717-35.498 79.198-79.237 79.198H357.71c-43.739 0-79.237-35.48-79.237-79.198v-237.595h-79.237c-43.739 0-79.237-35.481-79.237-79.199v-158.397c0-182.63 124.957-335.167 293.336-380.785-79.475-38.49-134.862-119.194-134.862-213.202 0-131.073 106.653-237.595 237.712-237.595 131.058 0 237.71 106.522 237.71 237.595 0 94.008-55.386 174.711-134.86 213.202C787.492 870.444 912.37 1022.98 912.37 1205.61v158.397z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement(
+	          'g',
+	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
+	          _react2.default.createElement('path', { d: 'M1840 231.986L1727.959 120l-340.165 339.999-181.69-181.602-112.042 111.986 293.732 293.589zM593.222 736c88.292 0 164.465 41.1 211.208 103.337-77.904 63.412-124.647 150.309-124.647 250.123 0 34.055 5.194 64.586 15.58 95.118-32.892 12.917-65.785 22.311-102.14 22.311-143.691 0-259.682-105.686-259.682-234.857 0-129.172 115.991-234.858 259.681-234.858V736zm432.561 159.703c130.28 0 235.445 105.95 235.445 235.445 0 129.494-105.165 235.444-235.445 235.444-130.28 0-235.444-105.95-235.444-235.444 0-129.495 105.165-235.445 235.444-235.445zm-747.79 258.728c67.648 80.235 160.468 129.005 265.875 132.151-42.478 59.783-69.222 132.151-69.222 210.813v103.833H160v-261.156c0-81.808 48.77-152.603 117.992-187.214v1.573zm1022.597 157.323c69.222 34.61 117.992 105.406 117.992 187.214v261.156H631.968v-261.156c0-81.808 48.77-152.603 117.992-187.214 70.796 83.38 166.763 132.151 275.315 132.151 108.553 0 204.52-50.343 275.315-132.151z' })
+	        )
 	      );
 	    }
 	  }]);

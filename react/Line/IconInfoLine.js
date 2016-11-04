@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(96);
+	module.exports = __webpack_require__(103);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 96:
+/***/ 103:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconInfoLine() {
 	    _classCallCheck(this, IconInfoLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconInfoLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconInfoLine.__proto__ || Object.getPrototypeOf(IconInfoLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconInfoLine, [{
@@ -615,8 +625,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _react2.default.createElement(
 	          'g',
 	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
-	          _react2.default.createElement('path', { d: 'M1040.667 880.942c0-44.35-35.803-79.942-80.167-79.942H800.167v160.286h80.166v240.428H720V1362h481v-160.286h-160.333V880.943zM960 740c55.195 0 100-44.8 100-100.004 0-55.197-44.805-99.996-100-99.996s-100 44.8-100 99.996C860 695.201 904.805 740 960 740' }),
-	          _react2.default.createElement('path', { d: 'M960.175 1603.365c-354.283 0-642.544-288.26-642.544-642.544 0-354.276 288.26-642.537 642.544-642.537s642.545 288.261 642.545 642.537c0 354.283-288.261 642.544-642.545 642.544m0-1445.719c-442.874 0-803.174 360.308-803.174 803.175 0 442.954 360.3 803.182 803.174 803.182 442.875 0 803.175-360.228 803.175-803.182 0-442.867-360.3-803.175-803.175-803.175' })
+	          _react2.default.createElement('path', { d: 'M960.175 1603.365c-354.283 0-642.544-288.26-642.544-642.544 0-354.276 288.26-642.537 642.544-642.537s642.545 288.261 642.545 642.537c0 354.283-288.261 642.544-642.545 642.544m0-1445.719c-442.874 0-803.174 360.308-803.174 803.175 0 442.954 360.3 803.182 803.174 803.182 442.875 0 803.175-360.228 803.175-803.182 0-442.867-360.3-803.175-803.175-803.175' }),
+	          _react2.default.createElement('path', { d: 'M812 937.007C812 906.075 837.077 881 868.002 881h183.996c30.93 0 56.002 25.08 56.002 56.007v506.986c0 30.932-25.077 56.007-56.002 56.007H868.002c-30.93 0-56.002-25.08-56.002-56.007V937.007zM960 733c86.156 0 156-69.844 156-156s-69.844-156-156-156-156 69.844-156 156 69.844 156 156 156z' })
 	        )
 	      );
 	    }

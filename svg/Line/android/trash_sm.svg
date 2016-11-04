@@ -1,3 +1,6 @@
 <svg viewBox="0 0 2160 2160" version="1.1" xmlns="http://www.w3.org/2000/svg" height="18pt" width="18pt">
-    <path d="M560 760h800l.08 800H560V760zm-160 800c0 88.24 71.76 160 160 160h800c88.24 0 160-71.76 160-160V600H400v960zm800-1200V200H720v160H240v160h1440V360h-480zM720 1400h160V920H720v480zm320 0h160V920h-160v480z" stroke="none" stroke-width="1" fill-rule="evenodd"/>
+    <g stroke="none" stroke-width="1" fill-rule="evenodd" transform="translate(120 120)">
+        <path d="M860 160c-110 0-200 90-200 200H460c-110 0-200 90-200 200h1400c0-110-90-200-200-200h-200c0-110-90-200-200-200H860zM460 760v962c0 22 16 38 38 38h926c22 0 38-16 38-38V760h-200v700c0 56-44 100-100 100s-100-44-100-100V760H862v700c0 56-44 100-100 100s-100-44-100-100V760H460z"/>
+        <path d="M460 698h1002v182H460z"/>
+    </g>
 </svg>

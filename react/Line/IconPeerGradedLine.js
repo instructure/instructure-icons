@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(134);
+	module.exports = __webpack_require__(149);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 134:
+/***/ 149:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconPeerGradedLine() {
 	    _classCallCheck(this, IconPeerGradedLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconPeerGradedLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconPeerGradedLine.__proto__ || Object.getPrototypeOf(IconPeerGradedLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconPeerGradedLine, [{
@@ -612,7 +622,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconPeerGradedLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1360.324 649.666L1063.69 353.113l113.149-113.117 183.486 183.436L1703.851 80 1817 193.117l-456.676 456.55zm-320.08 929.338c0-88.318 71.777-159.996 160.04-159.996 88.262 0 160.04 71.678 160.04 159.996h-320.08zm160.04-559.987c44.09 0 80.02 35.92 80.02 79.998 0 44.08-35.93 79.998-80.02 79.998-44.091 0-80.02-35.919-80.02-79.998 0-44.079 35.929-79.998 80.02-79.998zm140.355 273.834c60.096-43.68 99.706-113.997 99.706-193.836 0-132.316-107.708-239.994-240.061-239.994-132.354 0-240.061 107.678-240.061 239.994 0 79.839 39.61 150.157 99.705 193.836-106.027 52.158-179.725 160.316-179.725 286.153v79.998c0 44.159 35.849 79.998 80.02 79.998h480.122c44.17 0 80.02-35.84 80.02-79.998v-79.998c0-125.837-73.699-233.995-179.726-286.153zm-620.477-33.84h-80.02c-44.171 0-80.02 35.84-80.02 79.999v239.994h-160.04V1339.01c0-44.16-35.85-79.998-80.021-79.998h-80.02v-79.998c0-132.317 107.707-239.995 240.06-239.995 132.354 0 240.061 107.678 240.061 239.995v79.998zM480.102 499.03c44.09 0 80.02 35.919 80.02 79.998 0 44.079-35.93 79.998-80.02 79.998-44.092 0-80.02-35.92-80.02-79.998 0-44.079 35.928-79.998 80.02-79.998zm400.1 679.984c0-184.396-126.191-338.472-296.234-384.631 80.26-38.8 136.194-120.317 136.194-215.355 0-132.317-107.707-239.994-240.06-239.994-132.354 0-240.061 107.677-240.061 239.994 0 95.038 55.934 176.556 136.194 215.355C206.192 840.542 80 994.618 80 1179.013v159.997c0 44.159 35.85 79.998 80.02 79.998h80.02v239.994c0 44.159 35.85 79.998 80.02 79.998h320.082c44.171 0 80.02-35.84 80.02-79.998v-239.994h80.02c44.172 0 80.02-35.84 80.02-79.998v-159.996z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement(
+	          'g',
+	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
+	          _react2.default.createElement('path', { d: 'M1840 231.986L1727.959 120l-340.165 339.999-181.69-181.602-112.042 111.986 293.732 293.589zM593.222 736c88.292 0 164.465 41.1 211.208 103.337-77.904 63.412-124.647 150.309-124.647 250.123 0 34.055 5.194 64.586 15.58 95.118-32.892 12.917-65.785 22.311-102.14 22.311-143.691 0-259.682-105.686-259.682-234.857 0-129.172 115.991-234.858 259.681-234.858V736zm432.561 159.703c130.28 0 235.445 105.95 235.445 235.445 0 129.494-105.165 235.444-235.445 235.444-130.28 0-235.444-105.95-235.444-235.444 0-129.495 105.165-235.445 235.444-235.445zm-747.79 258.728c67.648 80.235 160.468 129.005 265.875 132.151-42.478 59.783-69.222 132.151-69.222 210.813v103.833H160v-261.156c0-81.808 48.77-152.603 117.992-187.214v1.573zm1022.597 157.323c69.222 34.61 117.992 105.406 117.992 187.214v261.156H631.968v-261.156c0-81.808 48.77-152.603 117.992-187.214 70.796 83.38 166.763 132.151 275.315 132.151 108.553 0 204.52-50.343 275.315-132.151z' })
+	        )
 	      );
 	    }
 	  }]);

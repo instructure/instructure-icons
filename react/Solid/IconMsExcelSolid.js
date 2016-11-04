@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(121);
+	module.exports = __webpack_require__(134);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 121:
+/***/ 134:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconMsExcelSolid() {
 	    _classCallCheck(this, IconMsExcelSolid);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconMsExcelSolid).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconMsExcelSolid.__proto__ || Object.getPrototypeOf(IconMsExcelSolid)).apply(this, arguments));
 	  }
 
 	  _createClass(IconMsExcelSolid, [{
@@ -615,7 +625,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _react2.default.createElement(
 	          'g',
 	          { stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' },
-	          _react2.default.createElement('path', { d: 'M426.904 307.91h724.286v289.817h289.714v72.455h144.857V495.277L1253.604 163h-826.7c-79.888 0-144.857 65.064-144.857 144.91v362.272h144.857V307.909zM1440.904 1612.09h-1014v-72.454H282.047v72.455c0 79.917 64.969 144.909 144.857 144.909h1014c79.889 0 144.857-64.992 144.857-144.91v-72.454h-144.857v72.455zM789.047 815.09v579.637h362.143v-144.909H933.904V815.091zM1404.69 960h253.5V815.09h-253.5c-99.807 0-181.071 81.295-181.071 181.137 0 99.843 81.264 181.137 181.07 181.137h72.43c19.99 0 36.214 16.302 36.214 36.227 0 19.925-16.224 36.227-36.214 36.227h-253.5v144.91h253.5c99.806 0 181.07-81.295 181.07-181.137s-81.264-181.136-181.07-181.136h-72.43c-19.99 0-36.213-16.303-36.213-36.228S1384.7 960 1404.69 960M368.976 1394.727l89.304-148.966 89.377 148.966h168.976L542.732 1104.91l173.901-289.818H547.657L458.28 964.057l-89.304-148.966H200l173.829 289.818L200 1394.727z' })
+	          _react2.default.createElement('path', { d: 'M898 894v299.91h181.657v-74.978H970.663V894zM1206.828 968.977h127.16V894h-127.16c-50.064 0-90.828 42.062-90.828 93.722 0 51.659 40.764 93.721 90.828 93.721h36.332c10.027 0 18.165 8.435 18.165 18.744 0 10.31-8.138 18.745-18.165 18.745H1116v74.977h127.16c50.064 0 90.828-42.062 90.828-93.722 0-51.659-40.764-93.721-90.828-93.721h-36.332c-10.027 0-18.165-8.435-18.165-18.744 0-10.31 8.138-18.745 18.165-18.745M687.761 1193.91l44.796-77.078 44.833 77.077h84.761l-87.231-149.954L862.15 894h-84.76l-44.834 77.077L687.761 894H603l87.195 149.955L603 1193.909zM1520 1680H400v-80H240v80c0 88.24 71.76 160 160 160h1120c88.24 0 160-71.76 160-160v-80h-160v80z' }),
+	          _react2.default.createElement('path', { d: 'M400 1600H240V240c0-88.16 71.76-160 160-160h913.12L1680 446.88V1600h-160V560h-320V240H400v1360z' })
 	        )
 	      );
 	    }

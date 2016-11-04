@@ -74,6 +74,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -85,6 +87,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -98,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -130,25 +134,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -592,7 +602,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconAnnouncementLine() {
 	    _classCallCheck(this, IconAnnouncementLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconAnnouncementLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconAnnouncementLine.__proto__ || Object.getPrototypeOf(IconAnnouncementLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconAnnouncementLine, [{
@@ -603,7 +613,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconAnnouncementLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1400 1193.573l-800-200v-355.04l800-200v755.04zM280 656.053h160v320H280v-320zm1249.2-383.04c-19.44-15.28-44.8-20.64-68.64-14.56l-950.4 237.6H280c-88.24 0-160 71.68-160 160v320c0 88.16 71.76 160 160 160h160v160c0 17.36 5.6 34.16 16 48l240 320 128-96-224-298.72v-110.8l860.56 215.12c6.4 1.6 12.96 2.4 19.44 2.4 17.68 0 35.04-5.84 49.2-16.96 19.44-15.2 30.8-38.4 30.8-63.04v-960c0-24.64-11.36-47.92-30.8-63.04zM1640 590.805v450.48c92.96-33.12 160-121.12 160-225.28 0-104.08-67.04-192.08-160-225.2z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M1568.992 1221.373l-827.163-343.75c-42.483-16.96-88.325-18.8-106.086-18.8H351.008V689.947h284.735c17.761 0 63.603-1.84 108.086-19.6l825.163-342.951v893.977zM1648.996 159h-91.605L682.386 522.59c-12.241 4.88-31.922 7.36-46.643 7.36H271.004c-44.162 0-80.004 35.84-80.004 79.999V938.82c0 44.238 35.842 79.998 80.004 79.998h152.328l253.453 665.903C695.026 1732.56 740.63 1762 788.951 1762c14.24 0 28.642-2.48 42.722-7.84 61.924-23.6 93.045-92.877 69.444-154.876l-218.091-572.786 874.365 363.351h91.605c44.162 0 80.004-35.839 80.004-79.998V238.998c0-44.159-35.842-79.998-80.004-79.998z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

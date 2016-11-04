@@ -55,7 +55,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(136);
+	module.exports = __webpack_require__(151);
 
 
 /***/ },
@@ -76,6 +76,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -87,6 +89,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -100,7 +104,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -132,25 +136,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -566,7 +576,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 
-/***/ 136:
+/***/ 151:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -601,7 +611,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconPinLine() {
 	    _classCallCheck(this, IconPinLine);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconPinLine).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconPinLine.__proto__ || Object.getPrototypeOf(IconPinLine)).apply(this, arguments));
 	  }
 
 	  _createClass(IconPinLine, [{
@@ -612,7 +622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconPinLine',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M1056.942 1029.239l110.77 110.77 55.423 55.425-138.5 138.463L586.096 835.35l138.5-138.463 55.384 55.386 110.769 110.77 470.846-470.813 166.192 166.155-470.846 470.853zm720.115-443.16l-443.154-443.121c-30.59-30.591-80.178-30.63-110.768 0l-110.808 110.77c-30.591 30.592-30.591 80.18 0 110.77l27.692 27.733-249.27 249.272-55.383-55.424c-61.182-61.182-160.396-61.182-221.577 0L364.519 835.35l304.693 304.658-526.269 526.238c-30.59 30.591-30.59 80.219 0 110.81 30.63 30.59 80.217 30.59 110.808 0l526.23-526.238 304.653 304.658 249.27-249.273c61.18-61.182 61.18-160.398 0-221.58l-55.385-55.385 249.269-249.273 27.692 27.693c30.59 30.591 80.178 30.591 110.769 0l110.808-110.77c30.59-30.592 30.59-80.219 0-110.81z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M1086.95 1149.79l-35.355-35.355-35.356 35.355-420.417 420.418c-32.79-63.098-22.823-143.235 29.91-195.968l153.74-153.739 35.355-35.356-35.355-35.355-307.479-307.479-35.355-35.355-35.356 35.355-76.869 76.87-5.142 6.03c-19.465 26.881-57.036 32.892-83.917 13.427-26.077-18.884-32.51-54.806-15.1-81.478l.127-.131a58.555 58.555 0 0 1 4.982-4.982l5.223-5.383a58.621 58.621 0 0 1 7.473-7.473l618.282-617.995c22.928-22.928 60.101-22.928 83.03 0 22.927 22.927 22.927 60.101 0 83.028l-76.87 76.87-35.356 35.355 35.355 35.356 307.478 307.478 35.356 35.355 35.355-35.355 153.74-153.739c52.733-52.734 132.87-62.701 195.967-29.911l-420.418 420.418-35.355 35.355 35.355 35.355 451.993 451.993 36.88 130.754-118.117-45.935-453.784-453.783zm695.37 569.094l-67.646-239.833-3.542-12.557-9.225-9.226-425.863-425.862 425.863-425.862 35.355-35.355-35.355-35.356c-104.083-104.083-274.106-104.083-378.189 0l-118.384 118.384-236.768-236.768 41.514-41.514c61.981-61.98 61.981-162.47 0-224.45-61.98-61.98-162.469-61.98-224.45 0L172.037 764.078a158.839 158.839 0 0 0-15.86 15.743 159.194 159.194 0 0 0-9.274 9.391l-3.638 3.639c-54.189 74.832-38.174 174.924 33.44 226.781 70.432 51.003 168.412 36.349 220.958-32.279l38.71-38.711 235.71 235.18 1.323 1.323-118.384 118.384c-104.083 104.083-104.083 274.107 0 378.189l35.355 35.356 35.355-35.356 425.863-425.862 425.862 425.862 7.434 7.435 9.8 3.81 221.383 86.094 93.47 36.349-27.225-96.522z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);

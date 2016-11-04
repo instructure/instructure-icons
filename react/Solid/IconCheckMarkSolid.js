@@ -54,7 +54,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(31);
+	module.exports = __webpack_require__(36);
 
 
 /***/ },
@@ -74,6 +74,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	  value: true
 	});
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _react = __webpack_require__(2);
@@ -85,6 +87,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	var _shortid2 = _interopRequireDefault(_shortid);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -98,7 +102,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function BaseIcon(props) {
 	    _classCallCheck(this, BaseIcon);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(BaseIcon).call(this));
+	    var _this = _possibleConstructorReturn(this, (BaseIcon.__proto__ || Object.getPrototypeOf(BaseIcon)).call(this));
 
 	    _this.titleId = props.name + '__' + _shortid2.default.generate();
 	    _this.descId = props.name + '__' + _shortid2.default.generate();
@@ -130,25 +134,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _props = this.props;
-	      var title = _props.title;
-	      var width = _props.width;
-	      var height = _props.height;
-	      var viewBox = _props.viewBox;
+	      var _props = this.props,
+	          title = _props.title,
+	          width = _props.width,
+	          height = _props.height,
+	          viewBox = _props.viewBox,
+	          props = _objectWithoutProperties(_props, ['title', 'width', 'height', 'viewBox']);
+
+	      delete props.name;
+	      delete props.children;
+	      delete props.desc;
 
 	      var style = {
 	        fill: 'currentColor'
 	      };
+
 	      return _react2.default.createElement(
 	        'svg',
-	        {
+	        _extends({}, props, {
 	          style: style,
 	          width: width,
 	          height: height,
 	          viewBox: viewBox,
 	          'aria-hidden': title ? null : 'true',
 	          'aria-labelledby': this.labelledBy,
-	          role: this.role },
+	          role: this.role }),
 	        this.renderTitle(),
 	        this.renderDesc(),
 	        _react2.default.createElement(
@@ -572,7 +582,12 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 28 */,
 /* 29 */,
 /* 30 */,
-/* 31 */
+/* 31 */,
+/* 32 */,
+/* 33 */,
+/* 34 */,
+/* 35 */,
+/* 36 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -607,7 +622,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  function IconCheckMarkSolid() {
 	    _classCallCheck(this, IconCheckMarkSolid);
 
-	    return _possibleConstructorReturn(this, Object.getPrototypeOf(IconCheckMarkSolid).apply(this, arguments));
+	    return _possibleConstructorReturn(this, (IconCheckMarkSolid.__proto__ || Object.getPrototypeOf(IconCheckMarkSolid)).apply(this, arguments));
 	  }
 
 	  _createClass(IconCheckMarkSolid, [{
@@ -618,7 +633,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        _extends({}, this.props, {
 	          name: 'IconCheckMarkSolid',
 	          viewBox: '0 0 1920 1920' }),
-	        _react2.default.createElement('path', { d: 'M891.697 1575.716L263.427 944.2l369.06-370.967L873.71 815.7l386.325-427.145H320.601C232.029 388.556 160 461.04 160 549.986v968.584c0 89.028 72.03 161.43 160.6 161.43h1124.205c88.571 0 160.6-72.402 160.6-161.43V786.563l-713.708 789.153zm-5.525-233.872L490.532 944.24l141.971-142.704 246.763 248.038L1611.444 240 1760 375.682l-873.828 966.162z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
+	        _react2.default.createElement('path', { d: 'M1209.599 1339.52c-41.048 57.36-105.22 93.84-175.553 99.68-6.562.56-13.203.8-19.764.8-63.372 0-124.584-25.12-169.712-70.32L467.379 992.56c-93.778-93.68-93.778-245.68 0-339.36 93.777-93.76 245.646-93.76 339.424 0L983.636 830l464.008-649.52c5.36-7.6 11.922-13.76 18.003-20.48H317.03C228.614 160 157 231.6 157 320v1280c0 88.32 71.614 160 160.03 160h1280.242c88.337 0 160.03-71.68 160.03-160V572.96L1209.6 1339.52zm-195.349-19.528c-31.686 0-62.252-12.56-84.896-35.12l-377.111-377.12c-46.89-46.88-46.89-122.8 0-169.68 46.889-46.88 122.823-46.88 169.712 0l277.012 276.88 546.343-764.72c38.568-53.84 113.462-66.4 167.392-27.92 53.93 38.56 66.493 113.52 27.925 167.44l-628.679 880c-20.563 28.64-52.65 46.96-87.776 49.84-3.36.24-6.641.4-9.922.4z', stroke: 'none', strokeWidth: '1', fillRule: 'evenodd' })
 	      );
 	    }
 	  }]);
