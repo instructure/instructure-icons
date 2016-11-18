@@ -1,6 +1,6 @@
 {
   "name": "instructure-icons",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "Icon set for Instructure products",
   "scripts": {
     "start": "gulp",
