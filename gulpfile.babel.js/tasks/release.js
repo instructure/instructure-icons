@@ -17,7 +17,7 @@ gulp.task('copy-pkg', function () {
     .pipe(jeditor(function (json) {
       delete json.devDependencies
       delete json.scripts
-      json.main = path.join('./', path.relative(config.destination, config.react.dist), 'index.js')
+      json.main = path.join('./', path.relative(config.destination, config.react.lib), 'index.js')
       return json
     }))
     .pipe(tag())

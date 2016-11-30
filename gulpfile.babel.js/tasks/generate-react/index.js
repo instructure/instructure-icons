@@ -259,6 +259,7 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
   const demoTasks = [];
   const buildTasks = [];
   const demoBuildTasks = [];
+  const libTasks = [];
 
   componentTasks.push(copyBaseIconSrc());
 
@@ -271,7 +272,7 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
 
   bundleTasks.push(createReactBundle());
   buildTasks.push(createComponentBuild());
-  bundleTasks.push(createReactLib());
+  libTasks.push(createReactLib());
 
-  sequence(componentTasks, bundleTasks, buildTasks, demoTasks, demoBuildTasks, cb);
+  sequence(componentTasks, bundleTasks, libTasks, buildTasks, demoTasks, demoBuildTasks, cb);
 });
