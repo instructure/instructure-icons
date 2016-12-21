@@ -74,7 +74,9 @@ export default class BaseIcon extends Component {
     delete props.desc
 
     const style = {
-      fill: 'currentColor'
+      fill: 'currentColor',
+      width,
+      height
     }
 
     return (
