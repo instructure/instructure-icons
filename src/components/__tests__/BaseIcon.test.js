@@ -23,7 +23,7 @@ describe('<BaseIcon/> tests', () => {
   })
 
   it('should have role "img" when a title is provided', () => {
-    const subject = TestUtils.renderIntoDocument(getTestBaseIcon('testIconTitle'))
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon({ title: 'testIconTitle' }))
 
     assert.ok(subject.role === 'img')
   })
@@ -42,7 +42,7 @@ describe('<BaseIcon/> tests', () => {
   })
 
   it('should render title when title prop is provided', () => {
-    const subject = TestUtils.renderIntoDocument(getTestBaseIcon('testIconTitle'))
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon({ title: 'testIconTitle' }))
     const title = TestUtils.findRenderedDOMComponentWithTag(subject, 'title')
 
     assert.ok(ReactDOM.findDOMNode(title))
@@ -62,7 +62,7 @@ describe('<BaseIcon/> tests', () => {
   })
 
   it('should render desc when desc prop is provided', () => {
-    const subject = TestUtils.renderIntoDocument(getTestBaseIcon('testIconTitle', 'testIconDesc'))
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon({ desc: 'testIconDesc' }))
     const desc = TestUtils.findRenderedDOMComponentWithTag(subject, 'desc')
 
     assert.ok(ReactDOM.findDOMNode(desc))
@@ -75,23 +75,44 @@ describe('<BaseIcon/> tests', () => {
   })
 
   it('should properly join ids when both title and desc attributes are provided', () => {
-    const subject = TestUtils.renderIntoDocument(getTestBaseIcon('testIconTitle', 'testIconDesc'))
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon({ title: 'testIconTitle', desc: 'testIconDesc' }))
     let re =/TestIcon__([^\s]+) TestIcon__([^\s]+)/
 
     assert.ok(re.test(subject.labelledBy))
   })
 
   it('should set custom width and height properly', () => {
-    const subject = TestUtils.renderIntoDocument(getTestBaseIcon('testIconTitle', 'testIconDesc', '2.75em', '3.8em'))
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon({ width: '2.75em', height: '3.8em' }))
 
     assert.ok(subject.props.width === '2.75em')
     assert.ok(subject.props.height === '3.8em')
   })
 
+  it('should set focusable to false by default', () => {
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon())
+
+    assert.equal(subject.props.focusable, false);
+  })
+
+  it('should allow focusable to be overridden', () => {
+    const subject = TestUtils.renderIntoDocument(getTestBaseIcon({ focusable: true }))
+
+    assert.equal(subject.props.focusable, true);
+  })
 })
 
-const getTestBaseIcon = (title=null, desc=null, width='1em', height='1em') => {
-  return (<BaseIcon name="TestIcon" viewBox="0 0 1920 1920" title={title} desc={desc} width={width} height={height}>
-            <path d="M962" stroke="none" strokeWidth="1" fillRule="evenodd"/>
-          </BaseIcon>)
+const getTestBaseIcon = (propOverrides = {}) => {
+  const props = {
+    title: null,
+    desc: null,
+    width: '1em',
+    height: '1em',
+    ...propOverrides
+  }
+
+  return (
+    <BaseIcon name="TestIcon" viewBox="0 0 1920 1920" {...props}>
+      <path d="M962" stroke="none" strokeWidth="1" fillRule="evenodd"/>
+    </BaseIcon>
+  )
 }

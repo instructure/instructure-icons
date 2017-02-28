@@ -9,12 +9,14 @@ export default class BaseIcon extends Component {
     title: PropTypes.string,
     desc: PropTypes.string,
     width: PropTypes.string,
-    height: PropTypes.string
+    height: PropTypes.string,
+    focusable: PropTypes.bool
   };
 
   static defaultProps = {
     width: '1em',
-    height: '1em'
+    height: '1em',
+    focusable: false
   };
 
   constructor (props) {
@@ -66,6 +68,7 @@ export default class BaseIcon extends Component {
       width,
       height,
       viewBox,
+      focusable,
       ...props
     } = this.props
 
@@ -88,7 +91,8 @@ export default class BaseIcon extends Component {
         viewBox={viewBox}
         aria-hidden={title ? null : 'true'}
         aria-labelledby={this.labelledBy}
-        role={this.role}>
+        role={this.role}
+        focusable={focusable}>
         {this.renderTitle()}
         {this.renderDesc()}
         <g role="presentation">
