@@ -22,6 +22,7 @@ gulp.task('build-icons', function (cb) {
   }
 
   sequence(
+    'generate-svgs',
     tasks,
     'generate-svg-demo',
     cb

@@ -9,55 +9,45 @@ import cheerio from 'gulp-cheerio';
 import handleErrors from '../../lib/handle-errors';
 import path from 'path';
 import webpackStream from 'webpack-stream';
-import babel from 'gulp-babel'
+import babel from 'gulp-babel';
 import named from 'vinyl-named';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack'
-import formatName, { toCamelCase } from '../../lib/format-name';
+import webpack from 'webpack';
+import formatName from '../../lib/format-name';
 
 const toComponentName = function (name, variant) {
-  return formatName(config.react.componentBaseName) + formatName(name)  + formatName(variant);
-}
+  return formatName(config.react.componentBaseName) + formatName(name) + formatName(variant);
+};
 
 const taskDir = './gulpfile.babel.js/tasks/generate-react/';
 
-const baseIconFileName = config.react.componentBaseName + 'Base';
-
-let glyphs = []
-
-const ATTR_REGEX = /(fill-rule|clip-path|fill-opacity|font-family|font-size|marker-end|marker-mid|marker-start|stop-color|stop-opacity|stroke-width|stroke-linecap|stroke-dasharray|stroke-opacity|text-anchor|xlink:href)=/g;
-
-function camelizeAttrs (svg) {
-  return svg.replace(ATTR_REGEX, function (line, attr) {
-    return toCamelCase(attr) + '='
-  });
-}
+let glyphs = [];
 
 const createReactSvgDataTask = function (variant) {
   const key = 'react-svg-data-' + variant;
   const destination = config.react.destination + variant;
+
   gulp.task(key, () => {
     return gulp.src(config.react.source + variant + '/*.svg')
       .pipe(cheerio({
         run: function ($, file) {
-          const $svg = $('svg')
-          const componentName = toComponentName(path.basename(file.path, '.svg'), variant)
+          const $svg = $('svg');
+          const componentName = toComponentName(path.basename(file.path, '.svg'), variant);
           const data = {
-            baseIconPath: path.relative(destination, path.join(config.react.destination, baseIconFileName)),
+            viewBox: $svg.attr('viewBox'), // we only care about the viewBox attr
             name: componentName,
-            viewBox: $svg.attr('viewBox'),
-            svg: camelizeAttrs($svg.html()),
+            source: $svg.toString(),
             destination
-          }
-          glyphs.push(data)
+          };
+          glyphs.push(data);
         },
         parserOptions: {
           xmlMode: true
         }
       }))
-      .on('error', handleErrors)
-
+      .on('error', handleErrors);
   });
+
   return key;
 };
 
@@ -71,35 +61,33 @@ const createReactComponentTask = function (data) {
             .pipe(gulp.dest(data.destination));
   });
   return key;
-}
+};
 
 const createReactComponentsTasks = function () {
-  const tasks = []
+  const tasks = [];
   glyphs.forEach(function (data) {
-    tasks.push(createReactComponentTask(data))
-  })
-  return tasks
-}
+    tasks.push(createReactComponentTask(data));
+  });
+  return tasks;
+};
 
-const createReactBundle = function (variant) {
-  variant = variant || '';
-
+const createReactBundle = function (variant = '') {
   const key = 'react-bundle' + (variant ? '-' + variant : '');
   const destination = config.react.destination + variant;
-  const glyphsPath = path.normalize(destination + '/**/' + config.react.componentBaseName + '*.js')
+  const glyphsPath = path.normalize(destination + '/**/' + config.react.componentBaseName + '*.js');
 
   gulp.task(key, () => {
     const glyphs = glob.sync(glyphsPath).map((filepath) => {
       return {
         name: path.basename(filepath, '.js'),
         path: path.relative(destination, filepath)
-      }
+      };
     });
     return gulp.src(taskDir + 'bundle.tmpl')
       .pipe(consolidate('lodash', { glyphs: glyphs }))
       .pipe(rename({ basename: 'index', extname: '.js' }))
       .on('error', handleErrors)
-      .pipe(gulp.dest(destination))
+      .pipe(gulp.dest(destination));
   });
 
   return key;
@@ -114,7 +102,7 @@ const createReactDemo = function (variant) {
       return {
         name:  path.basename(filepath, '.js'),
         path: path.relative(destination, filepath)
-      }
+      };
     });
     return gulp.src(taskDir + 'demo.tmpl')
       .pipe(consolidate('lodash', {
@@ -131,9 +119,7 @@ const createReactDemo = function (variant) {
   return key;
 };
 
-const createComponentBuild = function (variant) {
-  variant = variant || '';
-
+const createComponentBuild = function (variant = '') {
   const key = 'react-build' + (variant ? '-' + variant : '');
   const source = config.react.destination + variant;
   const destination = config.react.dist + variant;
@@ -142,12 +128,19 @@ const createComponentBuild = function (variant) {
     return gulp.src(glob.sync(source + '/*.js'))
       .pipe(named())
       .pipe(webpackStream({
+        cache: false,
         module: {
-          loaders: [
+          rules: [
             {
-              test: /\.js$/,
-              loader: 'babel',
-              exclude: /node_modules/
+              test: /\.js?$/,
+              exclude: [ /node_modules/ ],
+              use: [{
+                loader: 'babel-loader',
+                query: {
+                  babelrc: true,
+                  cacheDirectory: '.babel-cache'
+                }
+              }]
             }
           ]
         },
@@ -173,13 +166,13 @@ const createComponentBuild = function (variant) {
             }
           }
         ]
-      }))
+      }, webpack))
       .on('error', handleErrors)
-      .pipe(gulp.dest(destination))
+      .pipe(gulp.dest(destination));
   });
 
   return key;
-}
+};
 
 const createDemoBuild = function (variant) {
   const key = 'react-demo-build-' + variant;
@@ -188,12 +181,19 @@ const createDemoBuild = function (variant) {
     return gulp.src(config.react.demoDestination + variant + '.js')
       .pipe(named())
       .pipe(webpackStream({
+        cache: false,
         module: {
-          loaders: [
+          rules: [
             {
-              test: /\.js$/,
-              loader: 'babel',
-              exclude: /node_modules/
+              test: /\.js?$/,
+              exclude: [ /node_modules/ ],
+              use: [{
+                loader: 'babel-loader',
+                query: {
+                  babelrc: true,
+                  cacheDirectory: '.babel-cache'
+                }
+              }]
             }
           ]
         },
@@ -204,16 +204,15 @@ const createDemoBuild = function (variant) {
             inject: 'body',
             filename: variant + '.html'
           }),
-          new webpack.optimize.UglifyJsPlugin(),
-          new webpack.optimize.OccurenceOrderPlugin()
+          new webpack.optimize.UglifyJsPlugin()
         ]
-      }))
+      }, webpack))
       .on('error', handleErrors)
-      .pipe(gulp.dest(config.react.demoDestination))
+      .pipe(gulp.dest(config.react.demoDestination));
   });
 
   return key;
-}
+};
 
 const createReactLib = function () {
   const key = 'react-lib';
@@ -221,29 +220,28 @@ const createReactLib = function () {
   gulp.task(key, () => {
     return gulp.src(config.react.destination + '**/*.js')
       .pipe(babel())
-      .pipe(gulp.dest(config.react.lib))
+      .pipe(gulp.dest(config.react.lib));
   });
 
   return key;
-}
+};
 
 const copyBaseIconSrc = function () {
   const key = 'react-copy-base';
 
   gulp.task(key, () => {
-    return gulp.src(path.join(__dirname, '../../../src/components/BaseIcon.js'))
-      .pipe(rename({ basename: baseIconFileName }))
-      .pipe(gulp.dest(config.react.destination))
-  })
+    return gulp.src(path.join(__dirname, '../../../src/components/*.js'))
+      .pipe(gulp.dest(config.react.destination));
+  });
 
   return key;
-}
+};
 
-gulp.task('generate-react-svg-data', ['generate-svgs'], (cb) => {
+gulp.task('generate-react-svg-data', (cb) => {
   const variants = fs.readdirSync(config.react.source);
-  const tasks = []
+  const tasks = [];
 
-  glyphs = []
+  glyphs = [];
 
   variants.forEach((variant) => {
     tasks.push(createReactSvgDataTask(variant));
@@ -261,8 +259,6 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
   const demoBuildTasks = [];
   const libTasks = [];
 
-  componentTasks.push(copyBaseIconSrc());
-
   variants.forEach((variant) => {
     bundleTasks.push(createReactBundle(variant));
     buildTasks.push(createComponentBuild(variant));
@@ -274,5 +270,14 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
   buildTasks.push(createComponentBuild());
   libTasks.push(createReactLib());
 
-  sequence(componentTasks, bundleTasks, libTasks, buildTasks, demoTasks, demoBuildTasks, cb);
+  sequence(
+    copyBaseIconSrc(),
+    componentTasks,
+    bundleTasks,
+    libTasks,
+    buildTasks,
+    demoTasks,
+    demoBuildTasks,
+    cb
+  );
 });

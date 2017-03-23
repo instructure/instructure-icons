@@ -10,3 +10,4 @@ echo "-- installing dependencies"
 rm -rf node_modules
 npm cache clean
 npm install
+npm rebuild

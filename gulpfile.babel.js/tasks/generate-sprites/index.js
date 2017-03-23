@@ -52,10 +52,10 @@ const createDemoTask = function (variant) {
   return key;
 };
 
-gulp.task('generate-sprites', ['generate-svgs'], function (cb) {
+gulp.task('generate-sprites', function (cb) {
   const variants = fs.readdirSync(config.sprites.source);
   const tasks = [];
-  const demos = []
+  const demos = [];
 
   variants.forEach((variant) => {
     tasks.push(createSpriteTask(variant));

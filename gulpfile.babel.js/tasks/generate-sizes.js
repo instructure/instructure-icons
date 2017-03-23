@@ -67,8 +67,7 @@ const createSizeTask = function (variant, size) {
   return key;
 };
 
-
-gulp.task('generate-sizes', ['generate-svgs'], function (cb) {
+gulp.task('generate-sizes', function (cb) {
   const variants = fs.readdirSync(config.svg.destination);
   const sizeTasks = [];
 

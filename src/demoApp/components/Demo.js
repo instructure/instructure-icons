@@ -4,7 +4,7 @@ import axios from 'axios';
 // ES6 Promise polyfill needed for axios in IE <= 11
 require('es6-promise').polyfill();
 
-import styles from './Demo.css'
+import styles from './Demo.css';
 
 export default class Demo extends Component {
   constructor () {
@@ -16,33 +16,33 @@ export default class Demo extends Component {
   }
 
   updateDemo = () => {
-    this.setCurrentDemo(window.location.hash.slice(1) || this.defaultDemo())
+    this.setCurrentDemo(window.location.hash.slice(1) || this.defaultDemo());
   };
 
   setCurrentDemo = (demo) => {
     this.setState({ currentDemo: demo });
   };
 
-  componentDidMount() {
+  componentDidMount () {
     axios.get('demo.json')
     .then((response) => {
       this.setState({ formats: response.data.formats });
     })
     .catch((response) => {
       if (response instanceof Error) {
-        console.log('Error', response.message);
+        console.log('Error', response.message); // eslint-disable-line
       } else {
-        console.log(response);
+        console.log(response); // eslint-disable-line
       }
     });
 
-    this.updateDemo()
+    this.updateDemo();
 
-    window.addEventListener('hashchange', this.updateDemo, false)
+    window.addEventListener('hashchange', this.updateDemo, false);
   }
 
   componentWillUnmount () {
-    window.removeEventListener('hashchange', this.updateDemo, false)
+    window.removeEventListener('hashchange', this.updateDemo, false);
   }
 
   defaultDemo () {
@@ -52,7 +52,7 @@ export default class Demo extends Component {
     return (firstDemo) ? firstDemo.path : '';
   }
 
-  renderFormat(format) {
+  renderFormat (format) {
     return (
       <div key={format.name} className={styles.demoLinkListContainer}>
         <span className={styles.demoLinkFormat}>
@@ -74,14 +74,18 @@ export default class Demo extends Component {
     );
   }
 
-  render() {
+  render () {
     return (
       <div className={styles.root}>
         <nav className={styles.demoNav}>
           { this.state.formats.map(format => this.renderFormat(format)) }
         </nav>
-        <iframe src={this.state.currentDemo || this.defaultDemo()} className={styles.demo} />
+        <iframe
+          title={this.state.currentDemo && this.state.currentDemo.name}
+          src={this.state.currentDemo || this.defaultDemo()}
+          className={styles.demo}
+        />
       </div>
     );
   }
-};
+}

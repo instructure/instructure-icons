@@ -37,7 +37,7 @@ class Demo extends Component {
         </p>
 
         <ul className="glyph">
-          {Object.keys(<%= bundleName %>).map(this.renderIcon)}
+          {Object.keys(<%= bundleName %>).sort().map(this.renderIcon)}
         </ul>
       </div>
     )

@@ -1,32 +1,61 @@
 {
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
+  "plugins": [
+    "jsx-a11y",
+    "mocha"
+  ],
+  "parser": "babel-eslint",
+  "rules": {
+    "mocha/no-exclusive-tests": "error",
+    "jsx-a11y/accessible-emoji" : 2,
+    "jsx-a11y/aria-activedescendant-has-tabindex": 2,
+    "jsx-a11y/iframe-has-title": 2,
+    "jsx-a11y/no-autofocus": 2,
+    "jsx-a11y/no-distracting-elements": 2,
+    "jsx-a11y/no-redundant-roles": 2,
+    "jsx-a11y/anchor-has-content": 2,
+    "jsx-a11y/aria-props": 2,
+    "jsx-a11y/aria-proptypes": 2,
+    "jsx-a11y/aria-role": 2,
+    "jsx-a11y/aria-unsupported-elements": 2,
+    "jsx-a11y/click-events-have-key-events": 2,
+    "jsx-a11y/heading-has-content": 2,
+    "jsx-a11y/href-no-hash": 2,
+    "jsx-a11y/label-has-for": 2,
+    "jsx-a11y/mouse-events-have-key-events": 2,
+    "jsx-a11y/no-access-key": 2,
+    "jsx-a11y/no-onchange": 2,
+    "jsx-a11y/onclick-has-focus": 2,
+    "jsx-a11y/onclick-has-role": 2,
+    "jsx-a11y/role-has-required-aria-props": 2,
+    "jsx-a11y/role-supports-aria-props": 2,
+    "jsx-a11y/scope": 2,
+    "jsx-a11y/tabindex-no-positive": 2,
+    "max-len": [2, 120, 2],
+    "jsx-quotes": [2, "prefer-double"],
+    "react/jsx-no-bind": [2, {
+      "ignoreRefs": true
+    }],
+    "key-spacing": [2, {
+      "beforeColon": false,
+      "afterColon": true,
+      "mode": "minimum"
+    }],
+    "no-var": 2,
+    "prefer-const": 2,
+    "no-param-reassign": ["error", { "props": true }],
+    "no-console": 2,
+    "no-useless-escape": 0,
+
+    "no-unused-expressions": 0,
+    "react/no-unused-prop-types": 0
   },
   "env": {
     "browser": true,
-    "node": true
+    "mocha": true,
+    "es6": true
   },
-  "parser": "babel-eslint",
-  "rules": {
-    "camelcase": [2, {properties: "never"}],
-    "no-unused-vars": 2,
-    "max-len": [2, 120, 2],
-    "quotes": [2, "single"],
-    "jsx-quotes": 1,
-    "react/display-name": 0, // Prevent missing displayName in a React component definition
-    "react/jsx-no-undef": 2, // Disallow undeclared variables in JSX
-    "react/jsx-sort-props": 0, // Enforce props alphabetical sorting
-    "react/jsx-uses-react": 2, // Prevent React to be incorrectly marked as unused
-    "react/jsx-uses-vars": 2, // Prevent variables used in JSX to be incorrectly marked as unused
-    "react/no-multi-comp": 0, // Prevent multiple component definition per file
-    "react/no-unknown-property": 2, // Prevent usage of unknown DOM property
-    "react/prop-types": 2, // Prevent missing props validation in a React component definition
-    "react/react-in-jsx-scope": 2, // Prevent missing React when using JSX
-    "react/self-closing-comp": 2, // Prevent extra closing tags for components without children
-    "react/jsx-wrap-multilines": 2, // Prevent missing parentheses around multilines JSX
+  "globals": {
+    "expect": true
   },
-  "plugins": [
-    "react"
-  ]
+  "extends": ["semistandard", "standard-react"]
 }

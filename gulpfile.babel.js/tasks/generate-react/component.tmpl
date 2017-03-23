@@ -1,15 +1,13 @@
-import React, { Component } from 'react'
-import BaseIcon from '<%= baseIconPath %>'
+import React from 'react'
+import SVGIcon from '../SVGIcon'
 
-export default class <%= name %> extends Component {
-  render() {
-    return (
-      <BaseIcon
-        {...this.props}
-        name="<%= name %>"
-        viewBox="<%= viewBox %>">
-        <%= svg %>
-      </BaseIcon>
-    )
-  }
+export default function <%= name %> (props) {
+  return (
+    <SVGIcon
+      {...props}
+      name="<%= name %>"
+      viewBox="<%= viewBox %>"
+      src={`<%= source %>`}
+    />
+  )
 }

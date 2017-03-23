@@ -26,7 +26,7 @@ const createFontTask = function (variant) {
         formats
       }))
       .on('glyphs', (glyphs) => {
-        let options = {
+        const options = {
           glyphs: glyphs.map((glyph) => {
             return {
               name: glyph.name,
@@ -63,7 +63,7 @@ const createFontTask = function (variant) {
   return key;
 };
 
-gulp.task('generate-fonts', ['generate-svgs'], (cb) => {
+gulp.task('generate-fonts', (cb) => {
   const variants = fs.readdirSync(config.fonts.source);
   const tasks = [];
 

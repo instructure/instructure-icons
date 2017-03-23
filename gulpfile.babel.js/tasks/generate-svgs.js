@@ -40,7 +40,3 @@ gulp.task('generate-svgs', function () {
     .on('error', handleErrors)
     .pipe(gulp.dest(config.svg.destination));
 });
-
-
-
-
