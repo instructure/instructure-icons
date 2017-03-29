@@ -15,7 +15,7 @@ export default function (env) {
 
   if (env === 'production') {
     plugins = plugins.concat([
-      new webpack.UglifyJsPlugin()
+      new webpack.optimize.UglifyJsPlugin()
     ]);
   }
 
