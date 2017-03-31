@@ -2,7 +2,6 @@ import gulp from 'gulp';
 import cheerio from 'gulp-cheerio';
 import rename from 'gulp-rename';
 import sequence from 'run-sequence';
-import convert from 'gulp-rsvg';
 import fs from 'fs';
 import handleErrors from '../lib/handle-errors';
 
@@ -47,22 +46,8 @@ const createSizeTask = function (variant, size) {
         xmlMode: true
       }
     }))
-    .pipe(gulp.dest(path + '/android/'))
-
-    .pipe(cheerio({
-      run: ($) => {
-        $('svg').attr({
-          'height': size.box + 'px',
-          'width': size.box + 'px'
-        });
-      },
-      parserOptions: {
-        xmlMode: true
-      }
-    }))
-    .pipe(convert({ format: 'pdf' }))
     .on('error', handleErrors)
-    .pipe(gulp.dest(path + '/ios/'));
+    .pipe(gulp.dest(path));
   });
   return key;
 };

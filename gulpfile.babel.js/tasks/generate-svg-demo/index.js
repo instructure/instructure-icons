@@ -24,7 +24,7 @@ const createDemoTask = function (size, variants) {
       const variantData = {
         name: variant
       };
-      const source = path.normalize(destination + variant + '/android/*' + size.suffix + '.svg');
+      const source = path.normalize(destination + variant + '/*' + size.suffix + '.svg');
 
       variantData.glyphs = glob.sync(source).map((file) => {
         return {

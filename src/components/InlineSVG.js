@@ -111,7 +111,7 @@ function clean (src) {
 function parseAttributes (src) {
   const attributes = {};
   const SVGAttributesRegExp = /<svg\s+([^>]*)\s*>/;
-  const namesAndValuesRegExp = /\s+([\w\-.:]+)(\s*=\s*(?:"([^"]*)"|'([^']*)'|([\w\-.:]+)))?/g;
+  const namesAndValuesRegExp = /(\S+)=["']?((?:.(?!["']?\s+(?:\S+)=|[>"']))+.)["']?/g;
 
   if (typeof src === 'string') {
     const attributesMatches = SVGAttributesRegExp.exec(src);
@@ -120,7 +120,9 @@ function parseAttributes (src) {
     let match = namesAndValuesRegExp.exec(attributesString);
 
     while (match != null) {
-      attributes[match[1]] = match[2] || (match[3] ? match[3] : match[4] ? match[4] : match[5]) || match[1];
+      if (['xmlns', 'version'].indexOf(match[1]) === -1) {
+        attributes[match[1]] = match[2] || (match[3] ? match[3] : match[4] ? match[4] : match[5]) || match[1];
+      }
       match = namesAndValuesRegExp.exec(attributesString);
     }
   }

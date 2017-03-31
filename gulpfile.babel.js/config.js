@@ -8,9 +8,7 @@ const svg = {
   source: source + 'sketch/**/*.sketch',
   destination: destination + 'svg/',
   demoDestination: demoDestination + 'svg/',
-  sizes: [ // leave this out if you only want full size
-    { name: 'Small', suffix: '_sm', size: 16, box: 18 },
-    { name: 'Medium', suffix: '_md', size: 24, box: 26 },
+  sizes: [
     { name: 'Large', suffix: '_lg', size: 48, box: 50 }
   ]
 };
