@@ -1,13 +1,14 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import { string, node, bool } from 'prop-types';
 import shortid from 'shortid';
 
 export default class InlineSVG extends React.Component {
   static propTypes = {
-    children: PropTypes.node,
-    src: PropTypes.string,
-    title: PropTypes.string,
-    desc: PropTypes.string,
-    focusable: PropTypes.bool
+    children: node,
+    src: string,
+    title: string,
+    desc: string,
+    focusable: bool
   };
 
   static defaultProps = {
@@ -120,7 +121,7 @@ function parseAttributes (src) {
     let match = namesAndValuesRegExp.exec(attributesString);
 
     while (match != null) {
-      if (['xmlns', 'version'].indexOf(match[1]) === -1) {
+      if (['xmlns', 'xmlns:xlink', 'version'].indexOf(match[1]) === -1) {
         attributes[match[1]] = match[2] || (match[3] ? match[3] : match[4] ? match[4] : match[5]) || match[1];
       }
       match = namesAndValuesRegExp.exec(attributesString);

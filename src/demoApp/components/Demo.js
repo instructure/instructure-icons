@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-
-// ES6 Promise polyfill needed for axios in IE <= 11
-require('es6-promise').polyfill();
-
+import promise from 'es6-promise';
 import styles from './Demo.css';
+
+promise.polyfill();
 
 export default class Demo extends Component {
   constructor () {
