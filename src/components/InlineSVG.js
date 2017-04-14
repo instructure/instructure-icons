@@ -1,14 +1,13 @@
-import React from 'react';
-import { string, node, bool } from 'prop-types';
+import React, { PropTypes } from 'react';
 import shortid from 'shortid';
 
 export default class InlineSVG extends React.Component {
   static propTypes = {
-    children: node,
-    src: string,
-    title: string,
-    desc: string,
-    focusable: bool
+    children: PropTypes.node,
+    src: PropTypes.string,
+    title: PropTypes.string,
+    desc: PropTypes.string,
+    focusable: PropTypes.bool
   };
 
   static defaultProps = {

@@ -24,9 +24,8 @@ fi
 if [ ! $(program_is_installed sketchtool) ]
   then
     echo "-- install sketchtool...";
-    curl -L https://raw.githubusercontent.com/cognitom/dotfiles/master/lib/sketchtool.sh | sudo sh
+    curl -L https://raw.githubusercontent.com/cognitom/gulp-sketch/master/install-sketchtool.sh | sudo sh
 fi
-
 
 brew install librsvg
 

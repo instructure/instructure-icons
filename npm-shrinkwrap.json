@@ -1,6 +1,6 @@
 {
   "name": "instructure-icons",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "dependencies": {
     "abab": {
       "version": "1.0.3",
@@ -187,9 +187,9 @@
       "dev": true
     },
     "arr-flatten": {
-      "version": "1.0.1",
+      "version": "1.0.2",
       "from": "arr-flatten@>=1.0.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/arr-flatten/-/arr-flatten-1.0.1.tgz",
+      "resolved": "https://registry.npmjs.org/arr-flatten/-/arr-flatten-1.0.2.tgz",
       "dev": true
     },
     "arr-union": {
@@ -1158,9 +1158,9 @@
       "dev": true
     },
     "caniuse-db": {
-      "version": "1.0.30000649",
+      "version": "1.0.30000653",
       "from": "caniuse-db@>=1.0.30000634 <2.0.0",
-      "resolved": "https://registry.npmjs.org/caniuse-db/-/caniuse-db-1.0.30000649.tgz",
+      "resolved": "https://registry.npmjs.org/caniuse-db/-/caniuse-db-1.0.30000653.tgz",
       "dev": true
     },
     "caseless": {
@@ -1220,9 +1220,9 @@
       "dev": true
     },
     "clean-css": {
-      "version": "4.0.11",
+      "version": "4.0.12",
       "from": "clean-css@>=4.0.0 <4.1.0",
-      "resolved": "https://registry.npmjs.org/clean-css/-/clean-css-4.0.11.tgz",
+      "resolved": "https://registry.npmjs.org/clean-css/-/clean-css-4.0.12.tgz",
       "dev": true
     },
     "clean-sketch": {
@@ -2455,7 +2455,7 @@
     },
     "fbjs": {
       "version": "0.8.12",
-      "from": "fbjs@>=0.8.9 <0.9.0",
+      "from": "fbjs@>=0.8.4 <0.9.0",
       "resolved": "https://registry.npmjs.org/fbjs/-/fbjs-0.8.12.tgz",
       "dev": true,
       "dependencies": {
@@ -4640,9 +4640,9 @@
       "dev": true
     },
     "hosted-git-info": {
-      "version": "2.4.1",
+      "version": "2.4.2",
       "from": "hosted-git-info@>=2.1.4 <3.0.0",
-      "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.4.1.tgz",
+      "resolved": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-2.4.2.tgz",
       "dev": true
     },
     "html-comment-regex": {
@@ -5868,9 +5868,9 @@
       "dev": true
     },
     "nan": {
-      "version": "2.6.1",
+      "version": "2.6.2",
       "from": "nan@>=2.3.0 <3.0.0",
-      "resolved": "https://registry.npmjs.org/nan/-/nan-2.6.1.tgz",
+      "resolved": "https://registry.npmjs.org/nan/-/nan-2.6.2.tgz",
       "dev": true
     },
     "natives": {
@@ -6715,12 +6715,6 @@
       "resolved": "https://registry.npmjs.org/promise/-/promise-7.1.1.tgz",
       "dev": true
     },
-    "prop-types": {
-      "version": "15.5.6",
-      "from": "prop-types@15.5.6",
-      "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.6.tgz",
-      "dev": true
-    },
     "proto-list": {
       "version": "1.2.4",
       "from": "proto-list@>=1.2.1 <1.3.0",
@@ -6800,21 +6794,21 @@
       "dev": true
     },
     "react": {
-      "version": "15.5.3",
-      "from": "react@15.5.3",
-      "resolved": "https://registry.npmjs.org/react/-/react-15.5.3.tgz",
+      "version": "15.4.2",
+      "from": "react@15.4.2",
+      "resolved": "https://registry.npmjs.org/react/-/react-15.4.2.tgz",
       "dev": true
     },
     "react-addons-test-utils": {
-      "version": "15.5.1",
-      "from": "react-addons-test-utils@15.5.1",
-      "resolved": "https://registry.npmjs.org/react-addons-test-utils/-/react-addons-test-utils-15.5.1.tgz",
+      "version": "15.4.2",
+      "from": "react-addons-test-utils@15.4.2",
+      "resolved": "https://registry.npmjs.org/react-addons-test-utils/-/react-addons-test-utils-15.4.2.tgz",
       "dev": true
     },
     "react-dom": {
-      "version": "15.5.3",
-      "from": "react-dom@15.5.3",
-      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-15.5.3.tgz",
+      "version": "15.4.2",
+      "from": "react-dom@15.4.2",
+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-15.4.2.tgz",
       "dev": true
     },
     "read-pkg": {
@@ -7443,9 +7437,9 @@
       "dev": true
     },
     "sshpk": {
-      "version": "1.11.0",
+      "version": "1.13.0",
       "from": "sshpk@>=1.7.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.11.0.tgz",
+      "resolved": "https://registry.npmjs.org/sshpk/-/sshpk-1.13.0.tgz",
       "dev": true,
       "dependencies": {
         "assert-plus": {
@@ -8186,9 +8180,9 @@
       "dev": true
     },
     "vlq": {
-      "version": "0.2.1",
+      "version": "0.2.2",
       "from": "vlq@>=0.2.1 <0.3.0",
-      "resolved": "https://registry.npmjs.org/vlq/-/vlq-0.2.1.tgz",
+      "resolved": "https://registry.npmjs.org/vlq/-/vlq-0.2.2.tgz",
       "dev": true
     },
     "vm-browserify": {
@@ -8384,9 +8378,9 @@
           }
         },
         "webpack": {
-          "version": "1.14.0",
+          "version": "1.15.0",
           "from": "webpack@>=1.12.9 <2.0.0",
-          "resolved": "https://registry.npmjs.org/webpack/-/webpack-1.14.0.tgz",
+          "resolved": "https://registry.npmjs.org/webpack/-/webpack-1.15.0.tgz",
           "dev": true
         },
         "window-size": {

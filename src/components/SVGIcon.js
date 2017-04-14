@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
-import { string } from 'prop-types';
+import React, { Component, PropTypes } from 'react';
 import InlineSVG from './InlineSVG';
 
 export default class SVGIcon extends Component {
   static propTypes = {
     ...InlineSVG.propTypes,
-    width: string,
-    height: string
+    width: PropTypes.string,
+    height: PropTypes.string
   };
 
   static defaultProps = {
