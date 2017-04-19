@@ -1,6 +1,6 @@
 {
   "name": "instructure-icons",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "dependencies": {
     "abab": {
       "version": "1.0.3",
@@ -261,8 +261,7 @@
     "asap": {
       "version": "2.0.5",
       "from": "asap@>=2.0.3 <2.1.0",
-      "resolved": "https://registry.npmjs.org/asap/-/asap-2.0.5.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/asap/-/asap-2.0.5.tgz"
     },
     "asn1": {
       "version": "0.2.3",
@@ -1927,8 +1926,7 @@
     "encoding": {
       "version": "0.1.12",
       "from": "encoding@>=0.1.11 <0.2.0",
-      "resolved": "https://registry.npmjs.org/encoding/-/encoding-0.1.12.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/encoding/-/encoding-0.1.12.tgz"
     },
     "end-of-stream": {
       "version": "0.1.5",
@@ -2457,13 +2455,11 @@
       "version": "0.8.12",
       "from": "fbjs@>=0.8.4 <0.9.0",
       "resolved": "https://registry.npmjs.org/fbjs/-/fbjs-0.8.12.tgz",
-      "dev": true,
       "dependencies": {
         "core-js": {
           "version": "1.2.7",
           "from": "core-js@>=1.0.0 <2.0.0",
-          "resolved": "https://registry.npmjs.org/core-js/-/core-js-1.2.7.tgz",
-          "dev": true
+          "resolved": "https://registry.npmjs.org/core-js/-/core-js-1.2.7.tgz"
         }
       }
     },
@@ -4702,8 +4698,7 @@
     "iconv-lite": {
       "version": "0.4.13",
       "from": "iconv-lite@0.4.13",
-      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.13.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/iconv-lite/-/iconv-lite-0.4.13.tgz"
     },
     "icss-replace-symbols": {
       "version": "1.0.2",
@@ -4972,8 +4967,7 @@
     "is-stream": {
       "version": "1.1.0",
       "from": "is-stream@>=1.0.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/is-stream/-/is-stream-1.1.0.tgz"
     },
     "is-svg": {
       "version": "2.1.0",
@@ -5038,8 +5032,7 @@
     "isomorphic-fetch": {
       "version": "2.2.1",
       "from": "isomorphic-fetch@>=2.1.1 <3.0.0",
-      "resolved": "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/isomorphic-fetch/-/isomorphic-fetch-2.2.1.tgz"
     },
     "isstream": {
       "version": "0.1.2",
@@ -5069,8 +5062,7 @@
     "js-tokens": {
       "version": "3.0.1",
       "from": "js-tokens@>=3.0.0 <4.0.0",
-      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.1.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/js-tokens/-/js-tokens-3.0.1.tgz"
     },
     "js-yaml": {
       "version": "3.7.0",
@@ -5662,8 +5654,7 @@
     "loose-envify": {
       "version": "1.3.1",
       "from": "loose-envify@>=1.0.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.3.1.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/loose-envify/-/loose-envify-1.3.1.tgz"
     },
     "loud-rejection": {
       "version": "1.6.0",
@@ -5912,8 +5903,7 @@
     "node-fetch": {
       "version": "1.6.3",
       "from": "node-fetch@>=1.0.1 <2.0.0",
-      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-1.6.3.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/node-fetch/-/node-fetch-1.6.3.tgz"
     },
     "node-gyp": {
       "version": "3.6.0",
@@ -6034,8 +6024,7 @@
     "object-assign": {
       "version": "4.1.1",
       "from": "object-assign@>=4.0.1 <5.0.0",
-      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz"
     },
     "object-component": {
       "version": "0.0.3",
@@ -6712,8 +6701,12 @@
     "promise": {
       "version": "7.1.1",
       "from": "promise@>=7.1.1 <8.0.0",
-      "resolved": "https://registry.npmjs.org/promise/-/promise-7.1.1.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/promise/-/promise-7.1.1.tgz"
+    },
+    "prop-types": {
+      "version": "15.5.8",
+      "from": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.8.tgz",
+      "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.5.8.tgz"
     },
     "proto-list": {
       "version": "1.2.4",
@@ -6794,21 +6787,21 @@
       "dev": true
     },
     "react": {
-      "version": "15.4.2",
-      "from": "react@15.4.2",
-      "resolved": "https://registry.npmjs.org/react/-/react-15.4.2.tgz",
+      "version": "15.5.4",
+      "from": "react@latest",
+      "resolved": "https://registry.npmjs.org/react/-/react-15.5.4.tgz",
       "dev": true
     },
     "react-addons-test-utils": {
-      "version": "15.4.2",
-      "from": "react-addons-test-utils@15.4.2",
-      "resolved": "https://registry.npmjs.org/react-addons-test-utils/-/react-addons-test-utils-15.4.2.tgz",
+      "version": "15.5.1",
+      "from": "react-addons-test-utils@latest",
+      "resolved": "https://registry.npmjs.org/react-addons-test-utils/-/react-addons-test-utils-15.5.1.tgz",
       "dev": true
     },
     "react-dom": {
-      "version": "15.4.2",
-      "from": "react-dom@15.4.2",
-      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-15.4.2.tgz",
+      "version": "15.5.4",
+      "from": "react-dom@latest",
+      "resolved": "https://registry.npmjs.org/react-dom/-/react-dom-15.5.4.tgz",
       "dev": true
     },
     "read-pkg": {
@@ -7240,8 +7233,7 @@
     "setimmediate": {
       "version": "1.0.5",
       "from": "setimmediate@>=1.0.5 <2.0.0",
-      "resolved": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/setimmediate/-/setimmediate-1.0.5.tgz"
     },
     "setprototypeof": {
       "version": "1.0.2",
@@ -7856,8 +7848,7 @@
     "ua-parser-js": {
       "version": "0.7.12",
       "from": "ua-parser-js@0.7.12",
-      "resolved": "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.12.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/ua-parser-js/-/ua-parser-js-0.7.12.tgz"
     },
     "uglify-js": {
       "version": "2.8.22",
@@ -8418,8 +8409,7 @@
     "whatwg-fetch": {
       "version": "2.0.3",
       "from": "whatwg-fetch@>=0.10.0",
-      "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz",
-      "dev": true
+      "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz"
     },
     "whatwg-url": {
       "version": "4.7.0",

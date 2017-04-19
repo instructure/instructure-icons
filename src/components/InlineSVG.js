@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import shortid from 'shortid';
 
 export default class InlineSVG extends React.Component {
