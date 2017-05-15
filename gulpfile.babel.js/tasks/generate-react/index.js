@@ -119,61 +119,6 @@ const createReactDemo = function (variant) {
   return key;
 };
 
-const createComponentBuild = function (variant = '') {
-  const key = 'react-build' + (variant ? '-' + variant : '');
-  const source = config.react.destination + variant;
-  const destination = config.react.dist + variant;
-
-  gulp.task(key, () => {
-    return gulp.src(glob.sync(source + '/*.js'))
-      .pipe(named())
-      .pipe(webpackStream({
-        cache: false,
-        module: {
-          rules: [
-            {
-              test: /\.js?$/,
-              exclude: [ /node_modules/ ],
-              use: [{
-                loader: 'babel-loader',
-                query: {
-                  babelrc: true,
-                  cacheDirectory: '.babel-cache'
-                }
-              }]
-            }
-          ]
-        },
-        output: {
-          library: config.libraryName + variant,
-          libraryTarget: 'umd'
-        },
-        externals: [
-          {
-            'react': {
-              root: 'React',
-              commonjs2: 'react',
-              commonjs: 'react',
-              amd: 'react'
-            }
-          },
-          {
-            'react-dom': {
-              root: 'ReactDOM',
-              commonjs2: 'react-dom',
-              commonjs: 'react-dom',
-              amd: 'react-dom'
-            }
-          }
-        ]
-      }, webpack))
-      .on('error', handleErrors)
-      .pipe(gulp.dest(destination));
-  });
-
-  return key;
-};
-
 const createDemoBuild = function (variant) {
   const key = 'react-demo-build-' + variant;
 
@@ -204,6 +149,7 @@ const createDemoBuild = function (variant) {
             inject: 'body',
             filename: variant + '.html'
           }),
+          new webpack.EnvironmentPlugin([ "NODE_ENV" ]),
           new webpack.optimize.UglifyJsPlugin()
         ]
       }, webpack))
@@ -255,19 +201,16 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
   const componentTasks = createReactComponentsTasks();
   const bundleTasks = [];
   const demoTasks = [];
-  const buildTasks = [];
   const demoBuildTasks = [];
   const libTasks = [];
 
   variants.forEach((variant) => {
     bundleTasks.push(createReactBundle(variant));
-    buildTasks.push(createComponentBuild(variant));
     demoTasks.push(createReactDemo(variant));
     demoBuildTasks.push(createDemoBuild(variant));
   });
 
   bundleTasks.push(createReactBundle());
-  buildTasks.push(createComponentBuild());
   libTasks.push(createReactLib());
 
   sequence(
@@ -275,7 +218,6 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
     componentTasks,
     bundleTasks,
     libTasks,
-    buildTasks,
     demoTasks,
     demoBuildTasks,
     cb

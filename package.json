@@ -5,7 +5,7 @@
   "scripts": {
     "start": "gulp",
     "test": "eslint src && mocha --compilers js:babel-core/register -- src/**/*.test.js",
-    "build": "gulp build",
+    "build": "NODE_ENV=production gulp build",
     "bump-minor": "gulp bump-minor",
     "bump-major": "gulp bump-major",
     "bump-patch": "gulp bump-patch",

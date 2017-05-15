@@ -32,7 +32,6 @@ const react = {
   source: svg.destination,
   destination: destination + 'src/',
   lib: destination + 'lib/',
-  dist: destination + 'react/',
   demoDestination: demoDestination + 'react/',
   componentBaseName: 'Icon'
 };
