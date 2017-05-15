@@ -1,13 +1,15 @@
-import React from 'react'
+import React, { Component } from 'react'
 import SVGIcon from '../SVGIcon'
 
-export default function <%= name %> (props) {
-  return (
-    <SVGIcon
-      {...props}
-      name="<%= name %>"
-      viewBox="<%= viewBox %>"
-      src={`<%= source %>`}
-    />
-  )
+export default class <%= name %> extends Component {
+  render () {
+    return (
+      <SVGIcon
+        {...this.props}
+        name="<%= name %>"
+        viewBox="<%= viewBox %>"
+        src={`<%= source %>`}
+      />
+    )
+  }
 }
