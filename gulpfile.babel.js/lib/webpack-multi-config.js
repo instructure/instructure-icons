@@ -10,7 +10,8 @@ export default function (env) {
       template: path.resolve(config.demoAppSource, 'index.html'), // Load a custom template
       inject: 'body', // Inject all scripts into the body,
       filename: 'index.html'
-    })
+    }),
+    new webpack.EnvironmentPlugin([ 'NODE_ENV' ])
   ];
 
   if (env === 'production') {

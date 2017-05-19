@@ -3,14 +3,14 @@
   "version": "3.0.1",
   "description": "Icon set for Instructure products",
   "scripts": {
-    "start": "gulp",
-    "test": "eslint src && mocha --compilers js:babel-core/register -- src/**/*.test.js",
-    "build": "NODE_ENV=production gulp build",
+    "start": "cross-env NODE_ENV=development gulp",
+    "test": "cross-env NODE_ENV=test eslint src && mocha --compilers js:babel-core/register -- src/**/*.test.js",
+    "build": "cross-env NODE_ENV=production gulp build",
     "bump-minor": "gulp bump-minor",
     "bump-major": "gulp bump-major",
     "bump-patch": "gulp bump-patch",
-    "release": "gulp release",
-    "deploy": "gulp deploy"
+    "release": "cross-env NODE_ENV=production gulp release",
+    "deploy": "cross-env NODE_ENV=production gulp deploy"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "browser-sync": "2.18.8",
     "cheerio": "0.22.0",
     "css-loader": "0.28.0",
+    "cross-env": "5.0.0",
     "del": "2.2.2",
     "es6-promise": "4.1.0",
     "eslint": "3.19.0",

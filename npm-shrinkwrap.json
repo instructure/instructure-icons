@@ -1,6 +1,6 @@
 {
   "name": "instructure-icons",
-  "version": "2.2.0",
+  "version": "3.0.1",
   "dependencies": {
     "abab": {
       "version": "1.0.3",
@@ -1497,6 +1497,34 @@
       "from": "create-hmac@>=1.1.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/create-hmac/-/create-hmac-1.1.4.tgz",
       "dev": true
+    },
+    "cross-env": {
+      "version": "5.0.0",
+      "from": "cross-env@latest",
+      "resolved": "https://registry.npmjs.org/cross-env/-/cross-env-5.0.0.tgz",
+      "dev": true,
+      "dependencies": {
+        "is-windows": {
+          "version": "1.0.1",
+          "from": "is-windows@>=1.0.0 <2.0.0",
+          "resolved": "https://registry.npmjs.org/is-windows/-/is-windows-1.0.1.tgz",
+          "dev": true
+        }
+      }
+    },
+    "cross-spawn": {
+      "version": "5.1.0",
+      "from": "cross-spawn@>=5.1.0 <6.0.0",
+      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-5.1.0.tgz",
+      "dev": true,
+      "dependencies": {
+        "lru-cache": {
+          "version": "4.0.2",
+          "from": "lru-cache@>=4.0.1 <5.0.0",
+          "resolved": "https://registry.npmjs.org/lru-cache/-/lru-cache-4.0.2.tgz",
+          "dev": true
+        }
+      }
     },
     "cryptiles": {
       "version": "2.0.5",
@@ -6720,6 +6748,12 @@
       "resolved": "https://registry.npmjs.org/prr/-/prr-0.0.0.tgz",
       "dev": true
     },
+    "pseudomap": {
+      "version": "1.0.2",
+      "from": "pseudomap@>=1.0.1 <2.0.0",
+      "resolved": "https://registry.npmjs.org/pseudomap/-/pseudomap-1.0.2.tgz",
+      "dev": true
+    },
     "public-encrypt": {
       "version": "4.0.0",
       "from": "public-encrypt@>=4.0.0 <5.0.0",
@@ -7245,6 +7279,18 @@
       "version": "2.4.8",
       "from": "sha.js@>=2.3.6 <3.0.0",
       "resolved": "https://registry.npmjs.org/sha.js/-/sha.js-2.4.8.tgz",
+      "dev": true
+    },
+    "shebang-command": {
+      "version": "1.2.0",
+      "from": "shebang-command@>=1.2.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/shebang-command/-/shebang-command-1.2.0.tgz",
+      "dev": true
+    },
+    "shebang-regex": {
+      "version": "1.0.0",
+      "from": "shebang-regex@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/shebang-regex/-/shebang-regex-1.0.0.tgz",
       "dev": true
     },
     "shelljs": {
@@ -8539,6 +8585,12 @@
       "version": "3.2.1",
       "from": "y18n@>=3.2.0 <4.0.0",
       "resolved": "https://registry.npmjs.org/y18n/-/y18n-3.2.1.tgz",
+      "dev": true
+    },
+    "yallist": {
+      "version": "2.1.2",
+      "from": "yallist@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/yallist/-/yallist-2.1.2.tgz",
       "dev": true
     },
     "yargs": {

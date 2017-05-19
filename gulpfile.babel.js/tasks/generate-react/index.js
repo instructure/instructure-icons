@@ -149,7 +149,7 @@ const createDemoBuild = function (variant) {
             inject: 'body',
             filename: variant + '.html'
           }),
-          new webpack.EnvironmentPlugin([ "NODE_ENV" ]),
+          new webpack.EnvironmentPlugin([ 'NODE_ENV' ]),
           new webpack.optimize.UglifyJsPlugin()
         ]
       }, webpack))
