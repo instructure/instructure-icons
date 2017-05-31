@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import shortid from 'shortid';
+import cleanSVG from '../util/cleanSVG';
 
 export default class InlineSVG extends React.Component {
   static propTypes = {
@@ -59,7 +60,7 @@ export default class InlineSVG extends React.Component {
 
   renderContent (children, src) {
     if (src) {
-      return <g role="presentation" dangerouslySetInnerHTML={{ __html: clean(src) }} />;
+      return <g role="presentation" dangerouslySetInnerHTML={{ __html: cleanSVG(src) }} />;
     } else {
       return <g role="presentation">{children}</g>;
     }
@@ -91,24 +92,6 @@ export default class InlineSVG extends React.Component {
   }
 }
 
-function camelizeAttrs (svg) {
-  /* eslint-disable max-len */
-  const pattern = /(fill-rule|clip-path|fill-opacity|font-family|font-size|marker-end|marker-mid|marker-start|stop-color|stop-opacity|stroke-width|stroke-linecap|stroke-dasharray|stroke-opacity|text-anchor|xlink:href)=/g;
-  /* eslint-enable max-len */
-
-  return svg.replace(pattern, function (line, attr) {
-    return toCamelCase(attr) + '=';
-  });
-}
-
-// remove outer svg elements
-function clean (src) {
-  const pattern = /<svg[^>]*>((.|[\n\r])*)<\/svg>/;
-  const matches = pattern.exec(src);
-
-  return camelizeAttrs(matches[1]);
-}
-
 function parseAttributes (src) {
   const attributes = {};
   const SVGAttributesRegExp = /<svg\s+([^>]*)\s*>/;
@@ -129,11 +112,4 @@ function parseAttributes (src) {
   }
 
   return attributes;
-}
-
-function toCamelCase (string) {
-  return string.replace(
-    /([-:]\w)/g,
-    function ($1) { return $1.toUpperCase().replace('-', '').replace(':', ''); }
-  );
 }

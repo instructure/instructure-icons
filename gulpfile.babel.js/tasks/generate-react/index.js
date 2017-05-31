@@ -14,6 +14,7 @@ import named from 'vinyl-named';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import formatName from '../../lib/format-name';
+import cleanSVG from '../../../src/util/cleanSVG'
 
 const toComponentName = function (name, variant) {
   return formatName(config.react.componentBaseName) + formatName(name) + formatName(variant);
@@ -36,7 +37,7 @@ const createReactSvgDataTask = function (variant) {
           const data = {
             viewBox: $svg.attr('viewBox'), // we only care about the viewBox attr
             name: componentName,
-            source: $svg.toString(),
+            source: cleanSVG($svg.toString()),
             destination
           };
           glyphs.push(data);
@@ -183,6 +184,17 @@ const copyBaseIconSrc = function () {
   return key;
 };
 
+const copyUtilSrc = function () {
+  const key = 'react-copy-util';
+
+  gulp.task(key, () => {
+    return gulp.src(path.join(__dirname, '../../../src/util/*.js'))
+      .pipe(gulp.dest(config.destination + '/util/'));
+  });
+
+  return key;
+};
+
 gulp.task('generate-react-svg-data', (cb) => {
   const variants = fs.readdirSync(config.react.source);
   const tasks = [];
@@ -215,6 +227,7 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
 
   sequence(
     copyBaseIconSrc(),
+    copyUtilSrc(),
     componentTasks,
     bundleTasks,
     libTasks,
