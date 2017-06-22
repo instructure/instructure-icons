@@ -1,6 +1,6 @@
 {
   "name": "instructure-icons",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Icon set for Instructure products",
   "scripts": {
     "start": "cross-env NODE_ENV=development gulp",
