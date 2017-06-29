@@ -32,8 +32,8 @@
     "babel-runtime": "6.23.0",
     "browser-sync": "2.18.8",
     "cheerio": "0.22.0",
-    "css-loader": "0.28.0",
     "cross-env": "5.0.0",
+    "css-loader": "0.28.0",
     "del": "2.2.2",
     "es6-promise": "4.1.0",
     "eslint": "3.19.0",
@@ -90,7 +90,8 @@
   },
   "dependencies": {
     "prop-types": "^15.5.8",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "svg-to-jsx": "^0.0.20"
   },
   "peerDependencies": {
     "react": "^0.14.9 || ^15.6.1",

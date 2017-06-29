@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import svgtojsx from 'svg-to-jsx';
 import shortid from 'shortid';
-import cleanSVG from '../util/cleanSVG';
 
 export default class InlineSVG extends React.Component {
   static propTypes = {
@@ -60,7 +60,7 @@ export default class InlineSVG extends React.Component {
 
   renderContent (children, src) {
     if (src) {
-      return <g role="presentation" dangerouslySetInnerHTML={{ __html: cleanSVG(src) }} />;
+      return <g role="presentation" dangerouslySetInnerHTML={{ __html: svgtojsx(src) }} />;
     } else {
       return <g role="presentation">{children}</g>;
     }

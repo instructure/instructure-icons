@@ -17,7 +17,7 @@ gulp.task('generate-svgs', function () {
     .pipe(svgmin({
       js2svg: { pretty: true },
       plugins: [
-        { removeDimensions: true},
+        { removeDimensions: true },
         { removeViewBox: false },
         { removeDesc: true },
         { removeTitle: true },

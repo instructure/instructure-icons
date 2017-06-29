@@ -14,7 +14,7 @@ import named from 'vinyl-named';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import webpack from 'webpack';
 import formatName from '../../lib/format-name';
-import cleanSVG from '../../../src/util/cleanSVG'
+import svgtojsx from 'svg-to-jsx';
 
 const toComponentName = function (name, variant) {
   return formatName(config.react.componentBaseName) + formatName(name) + formatName(variant);
@@ -37,7 +37,7 @@ const createReactSvgDataTask = function (variant) {
           const data = {
             viewBox: $svg.attr('viewBox'), // we only care about the viewBox attr
             name: componentName,
-            source: cleanSVG($svg.toString()),
+            source: svgtojsx($svg.toString()),
             destination
           };
           glyphs.push(data);
