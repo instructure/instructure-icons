@@ -93,3 +93,7 @@ If you ran `npm start`, you're already running the web app. Just visit [localhos
 - Originally forked from Trello's [iconathon](https://github.com/trello/iconathon)
 - [symbols-for-sketch](https://github.com/cognitom/symbols-for-sketch)
 - [react-icons](https://github.com/gorangajic/react-icons)
+
+### License
+
+[MIT](LICENSE.md)
