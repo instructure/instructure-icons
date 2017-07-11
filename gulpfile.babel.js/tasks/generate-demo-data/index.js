@@ -20,16 +20,6 @@ gulp.task('generate-demo-data', function () {
   });
 
   formats.push({
-    name: 'SVG Sprite',
-    demos:  glob.sync(config.sprites.demoDestination + '**/*.html').map((file) => {
-      return {
-        path: path.relative(config.destination, file),
-        name: path.basename(file, path.extname(file))
-      };
-    })
-  });
-
-  formats.push({
     name: 'Font',
     demos:  glob.sync(config.fonts.demoDestination + '**/*.html')
       .map((file) => {

@@ -22,12 +22,6 @@ const fonts = {
   formats: ['woff2', 'woff', 'eot', 'ttf', 'svg']
 };
 
-const sprites = {
-  source: svg.destination, // variant is added to path
-  destination: destination + 'sprites/',
-  demoDestination: demoDestination + 'sprites/'
-};
-
 const react = {
   source: svg.destination,
   destination: destination + 'src/',
@@ -43,6 +37,5 @@ export default {
   libraryName,
   svg,
   fonts,
-  sprites,
   react
 };
