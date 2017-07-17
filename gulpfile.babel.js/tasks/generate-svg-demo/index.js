@@ -16,24 +16,22 @@ const createDemoTask = function (size, variants) {
 
   gulp.task(key, () => {
     const data = {
-      size: `${size.name} ${size.size}pt (${size.box}pt box)`,
-      variants: []
+      size: `${size.name} ${size.size}pt (${size.box}pt box)`
     };
 
+    const glyphs = {};
+
     variants.forEach((variant) => {
-      const variantData = {
-        name: variant
-      };
       const source = path.normalize(destination + variant + '/*' + size.suffix + '.svg');
 
-      variantData.glyphs = glob.sync(source).map((file) => {
-        return {
-          path: path.relative(config.destination, file),
-          name: path.basename(file)
-        };
+      glob.sync(source).forEach((file) => {
+        glyphs[path.basename(file)] = Object.assign({}, glyphs[path.basename(file)], {
+          [variant]: path.relative(config.destination, file)
+        });
       });
-      data.variants.push(variantData);
     });
+
+    data.glyphs = Object.keys(glyphs).map((name) => Object.assign({}, {name, variants: glyphs[name]}));
 
     return gulp.src(taskDir + 'template.html')
       .pipe(consolidate('lodash', data))

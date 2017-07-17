@@ -4,23 +4,70 @@
     <style>
       body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; text-align: center; background: #f7f7f7 }
       body > h1 { color: #666; margin: 1em 0 }
-      .glyph { padding: 0 }
-      .glyph > li { display: inline-block; margin: .3em .2em; padding-top: 1em; height: 8em; background: #fff; border-radius: .5em; position: relative; text-align: center; vertical-align: top; }
       .glyph-img { border: 1px dashed rgba(0,0,0,0.5); margin: 0.5em; }
-      .glyph-name { font-size: .8em; color: #666; display: block }
+      .glyph-name { font-size: 1em; color: #666; display: block }
+      .example {
+        box-sizing: border-box;
+        padding: 1em;
+        margin: 0;
+        background-color: #fff;
+        background-image: linear-gradient(45deg,
+        #eee 25%,
+        transparent 25%,
+        transparent 75%,
+        #eee 75%,
+        #eee),
+          linear-gradient(45deg,
+          #eee 25%,
+          transparent 25%,
+          transparent 75%,
+          #eee 75%,
+          #eee);
+        background-position: 0 0, 0.5rem 0.5rem;
+        background-size: 1rem 1rem;
+        border: 1px solid #C7CDD1;
+        border-radius: 3px;
+        position: relative;
+        overflow-x: auto;
+      }
+
+      .grid {
+        display: flex;
+        max-width: 80rem;
+        flex-wrap: wrap;
+        margin: 0 auto;
+      }
+
+      .cell {
+        min-width: 15rem;
+        flex-basis: 15rem;
+        flex: 1;
+        margin: 0.5rem;
+      }
+
+      @media (max-width: 30em) {
+        .grid {
+          display: block;
+        }
+        .cell {
+          max-width: none;
+        }
+      }
     </style>
   </head>
   <body>
     <h1><%= size %> SVGs</h1>
-    <% _.each(variants, function(variant) { %>
-      <h2><%= variant.name %></h2>
 
-      <ul class="glyph"><% _.each(variant.glyphs, function(glyph) { %>
-        <li>
-          <img src="../../<%= glyph.path %>" class="glyph-img" />
+      <div class="grid"><% _.each(glyphs, function(glyph) { %>
+        <div class="cell">
+          <div class="example">
+            <% _.keys(glyph.variants).forEach(function(variant) { %>
+              <img src="../../<%= glyph.variants[variant] %>" class="glyph-img" />
+            <% }); %>
+          </div>
           <span class="glyph-name"><%= glyph.name %></span>
-        </li><% }); %>
-      </ul>
-    <% }); %>
+        </div>
+        <% }); %>
+      </div>
   </body>
 </html>
