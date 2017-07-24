@@ -9,13 +9,24 @@ import handleErrors from '../../lib/handle-errors';
 import path from 'path';
 import formatName from '../../lib/format-name';
 
+const taskDir = './gulpfile.babel.js/tasks/generate-fonts/';
+const demoData = {
+  glyphsData: {},
+  cssFiles: [],
+  fontName: formatName(config.fonts.fontName)
+};
+
 const createFontTask = function (variant) {
   const key = 'font-' + variant;
-  const taskDir = './gulpfile.babel.js/tasks/generate-fonts/';
   const destination = path.normalize(config.fonts.destination + variant);
   const fontName = formatName(config.fonts.fontName) + '-' + formatName(variant);
   const formats = config.fonts.formats;
-  const className = config.fonts.className;
+  const className = `${config.fonts.className}-${variant.toLowerCase()}`;
+
+  const cssPath = path.normalize(path.relative(config.fonts.demoDestination, destination) + '/');
+  const cssFile = `${cssPath}${fontName}.css`;
+
+  demoData.cssFiles.push(cssFile);
 
   gulp.task(key, () => {
     return gulp.src(config.fonts.source + variant + '/*.svg')
@@ -28,15 +39,22 @@ const createFontTask = function (variant) {
       .on('glyphs', (glyphs) => {
         const options = {
           glyphs: glyphs.map((glyph) => {
+            const codepoint = glyph.unicode[0].charCodeAt(0);
+            demoData.glyphsData[glyph.name] = demoData.glyphsData[glyph.name] || [];
+            demoData.glyphsData[glyph.name].push({
+              name: variant,
+              codepoint,
+              className
+            });
+
             return {
               name: glyph.name,
-              codepoint: glyph.unicode[0].charCodeAt(0)
+              codepoint
             };
           }),
           variant,
           fontName,
-          className,
-          cssPath: path.normalize(path.relative(config.fonts.demoDestination, destination) + '/')
+          className
         };
         // build css
         gulp.src(taskDir + 'template.css')
@@ -50,18 +68,30 @@ const createFontTask = function (variant) {
           .on('error', handleErrors)
           .pipe(rename({ basename: fontName + '_icon-map' }))
           .pipe(gulp.dest(destination));
-        // build example html
-        gulp.src(taskDir + 'template.html')
-          .pipe(consolidate('lodash', options))
-          .on('error', handleErrors)
-          .pipe(rename({ basename: fontName }))
-          .pipe(gulp.dest(config.fonts.demoDestination));
       })
       .on('error', handleErrors)
       .pipe(gulp.dest(destination));
   });
   return key;
 };
+
+gulp.task('generate-fonts-demo', (cb) => {
+  const glyphs = Object.keys(demoData.glyphsData).map((name) => {
+    return {
+      name,
+      variants: demoData.glyphsData[name]
+    };
+  });
+  return gulp.src(taskDir + 'template.html')
+    .pipe(consolidate('lodash', {
+      cssFiles: demoData.cssFiles,
+      fontName: demoData.fontName,
+      glyphs
+    }))
+    .on('error', handleErrors)
+    .pipe(rename({ basename: formatName(config.fonts.fontName) }))
+    .pipe(gulp.dest(config.fonts.demoDestination));
+});
 
 gulp.task('generate-fonts', (cb) => {
   const variants = fs.readdirSync(config.fonts.source);
@@ -71,5 +101,5 @@ gulp.task('generate-fonts', (cb) => {
     tasks.push(createFontTask(variant));
   });
 
-  sequence(tasks, cb);
+  sequence(tasks, 'generate-fonts-demo', cb);
 });
