@@ -54,16 +54,13 @@ export default class Demo extends Component {
   renderFormat (format) {
     return (
       <div key={format.name} className={styles.demoLinkListContainer}>
-        <span className={styles.demoLinkFormat}>
-          {format.name}:
-        </span>
         <ul className={styles.demoLinkList}>
           {
             format.demos.map(demo =>
               <li key={demo.name} className={styles.demoLinkContainer}>
                 <a href={'#' + demo.path}
                   className={styles.demoLink}>
-                  {demo.name}
+                  {format.name}
                 </a>
               </li>
             )

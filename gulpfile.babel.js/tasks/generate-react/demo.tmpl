@@ -1,28 +1,50 @@
 import React, { Component } from 'react'
 import ReactDOM from 'react-dom'
-import * as <%= bundleName %> from '<%= bundlePath %>'
+
+<% _.each(variants, function(variant) { %>
+import * as <%= variant.bundleName %> from '<%= variant.bundlePath %>'
+<% }); %>
+
+const icons = {};
+
+<% _.each(variants, function(variant) { %>
+Object.keys(<%= variant.bundleName %>).map(compName => {
+  const name = compName.substring(0, compName.indexOf('<%= variant.name %>'));
+  icons[name] = icons[name] || []
+  icons[name].push(<%= variant.bundleName %>[compName])
+})
+<% }); %>
+
+const glyphs = Object.keys(icons).map((name) => Object.assign({}, {name, icons: icons[name]}));
 
 class Demo extends Component {
-  renderIcon (icon) {
-    const Icon = <%= bundleName %>[icon]
+
+  renderIcon (name, icons) {
     return (
-      <li key={icon}>
-        <div className="glyph-img">
-          <Icon width="2em" height="2em" />
+      <div className="cell" key={name}>
+        <div className="example">
+          {
+            icons.map((Icon, i) => <Icon key={name + i} width="4em" height="4em" className="glyph-img"/>)
+          }
         </div>
         <div className="glyph-name">
           <code>
-             &lt;{icon}/&gt;
+             &lt;{name}[Variant] /&gt;
           </code>
         </div>
-      </li>
+      </div>
     )
   }
 
   render () {
     return (
       <div>
-        <h1><%= variant %> React Components</h1>
+        <h1>React Components</h1>
+
+        <p className="note">
+          <strong>Variants: </strong><% _.each(variants, function(variant) { %> <%= variant.name %>, <% }); %>
+        </p>
+
         <p className="note">
         A11y note: By default the role is set to <code>presentation</code>.
         However, when the <code>title</code> prop is set, the <code>role</code>
@@ -36,9 +58,13 @@ class Demo extends Component {
         CSS <code>color</code> and <code>font-size</code> rules on the parent element.
         </p>
 
-        <ul className="glyph">
-          {Object.keys(<%= bundleName %>).sort().map(this.renderIcon)}
-        </ul>
+        <div className="grid">
+          {
+            glyphs.map(glyph => {
+              return this.renderIcon(glyph.name, glyph.icons)
+            })
+          }
+        </div>
       </div>
     )
   }

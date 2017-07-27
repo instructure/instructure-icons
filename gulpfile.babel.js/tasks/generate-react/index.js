@@ -94,25 +94,25 @@ const createReactBundle = function (variant = '') {
   return key;
 };
 
-const createReactDemo = function (variant) {
-  const key = 'react-demo-' + variant;
-  const destination = config.react.destination + variant;
+const createReactDemo = function (variants) {
+  const key = 'react-demo';
 
   gulp.task(key, () => {
-    const glyphs = glob.sync(destination + '/' + config.react.componentBaseName + '*.js').map((filepath) => {
-      return {
-        name:  path.basename(filepath, '.js'),
-        path: path.relative(destination, filepath)
-      };
-    });
-    return gulp.src(taskDir + 'demo.tmpl')
-      .pipe(consolidate('lodash', {
+    const data = {
+      variants: []
+    };
+
+    variants.forEach(variant => {
+      data.variants.push({
         bundleName: formatName(config.libraryName + formatName(variant)),
         bundlePath: path.relative(config.react.demoDestination, config.react.destination + variant),
-        variant,
-        glyphs
-      }))
-      .pipe(rename({ basename: variant, extname: '.js' }))
+        name: variant
+      });
+    });
+
+    return gulp.src(taskDir + 'demo.tmpl')
+      .pipe(consolidate('lodash', data))
+      .pipe(rename({ basename: 'Icons', extname: '.js' }))
       .on('error', handleErrors)
       .pipe(gulp.dest(config.react.demoDestination));
   });
@@ -120,11 +120,10 @@ const createReactDemo = function (variant) {
   return key;
 };
 
-const createDemoBuild = function (variant) {
-  const key = 'react-demo-build-' + variant;
-
+const createDemoBuild = function () {
+  const key = 'react-demo-build';
   gulp.task(key, () => {
-    return gulp.src(config.react.demoDestination + variant + '.js')
+    return gulp.src(config.react.demoDestination + 'Icons' + '.js')
       .pipe(named())
       .pipe(webpackStream({
         cache: false,
@@ -145,10 +144,10 @@ const createDemoBuild = function (variant) {
         },
         plugins: [
           new HtmlWebpackPlugin({
-            title: config.libraryName + ' ' + variant + 'React Components',
+            title: config.libraryName + 'React Components',
             template: path.resolve(taskDir, 'template.html'),
             inject: 'body',
-            filename: variant + '.html'
+            filename: 'Icons' + '.html'
           }),
           new webpack.EnvironmentPlugin([ 'NODE_ENV' ]),
           new webpack.optimize.UglifyJsPlugin()
@@ -218,9 +217,10 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
 
   variants.forEach((variant) => {
     bundleTasks.push(createReactBundle(variant));
-    demoTasks.push(createReactDemo(variant));
-    demoBuildTasks.push(createDemoBuild(variant));
   });
+
+  demoTasks.push(createReactDemo(variants));
+  demoBuildTasks.push(createDemoBuild());
 
   bundleTasks.push(createReactBundle());
   libTasks.push(createReactLib());
