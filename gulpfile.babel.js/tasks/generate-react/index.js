@@ -8,11 +8,7 @@ import config from '../../config';
 import cheerio from 'gulp-cheerio';
 import handleErrors from '../../lib/handle-errors';
 import path from 'path';
-import webpackStream from 'webpack-stream';
 import babel from 'gulp-babel';
-import named from 'vinyl-named';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import webpack from 'webpack';
 import formatName from '../../lib/format-name';
 import svgtojsx from 'svg-to-jsx';
 
@@ -112,47 +108,7 @@ const createReactDemo = function (variants) {
 
     return gulp.src(taskDir + 'demo.tmpl')
       .pipe(consolidate('lodash', data))
-      .pipe(rename({ basename: 'Icons', extname: '.js' }))
-      .on('error', handleErrors)
-      .pipe(gulp.dest(config.react.demoDestination));
-  });
-
-  return key;
-};
-
-const createDemoBuild = function () {
-  const key = 'react-demo-build';
-  gulp.task(key, () => {
-    return gulp.src(config.react.demoDestination + 'Icons' + '.js')
-      .pipe(named())
-      .pipe(webpackStream({
-        cache: false,
-        module: {
-          rules: [
-            {
-              test: /\.js?$/,
-              exclude: [ /node_modules/ ],
-              use: [{
-                loader: 'babel-loader',
-                query: {
-                  babelrc: true,
-                  cacheDirectory: '.babel-cache'
-                }
-              }]
-            }
-          ]
-        },
-        plugins: [
-          new HtmlWebpackPlugin({
-            title: config.libraryName + 'React Components',
-            template: path.resolve(taskDir, 'template.html'),
-            inject: 'body',
-            filename: 'Icons' + '.html'
-          }),
-          new webpack.EnvironmentPlugin([ 'NODE_ENV' ]),
-          new webpack.optimize.UglifyJsPlugin()
-        ]
-      }, webpack))
+      .pipe(rename({ basename: 'Demo', extname: '.js' }))
       .on('error', handleErrors)
       .pipe(gulp.dest(config.react.demoDestination));
   });
@@ -212,7 +168,6 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
   const componentTasks = createReactComponentsTasks();
   const bundleTasks = [];
   const demoTasks = [];
-  const demoBuildTasks = [];
   const libTasks = [];
 
   variants.forEach((variant) => {
@@ -220,7 +175,6 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
   });
 
   demoTasks.push(createReactDemo(variants));
-  demoBuildTasks.push(createDemoBuild());
 
   bundleTasks.push(createReactBundle());
   libTasks.push(createReactLib());
@@ -232,7 +186,6 @@ gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
     bundleTasks,
     libTasks,
     demoTasks,
-    demoBuildTasks,
     cb
   );
 });

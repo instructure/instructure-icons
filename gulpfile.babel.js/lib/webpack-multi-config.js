@@ -11,7 +11,10 @@ export default function (env) {
       inject: 'body', // Inject all scripts into the body,
       filename: 'index.html'
     }),
-    new webpack.EnvironmentPlugin([ 'NODE_ENV' ])
+    new webpack.EnvironmentPlugin({
+      NODE_ENV: JSON.stringify(process.env.NODE_ENV),
+      VERSION: require('../../package.json').version
+    })
   ];
 
   if (env === 'production') {
@@ -23,12 +26,18 @@ export default function (env) {
   const webpackConfig = {
     cache: false,
     plugins,
+    resolve: {
+      alias: {
+        build: path.resolve(process.cwd(), config.destination),
+        'instructure-icons': path.resolve(process.cwd(), config.destination)
+      }
+    },
     module: {
       rules: [
         {
           enforce: 'pre',
           test: /\.js?$/,
-          exclude: [ /node_modules/ ],
+          exclude: [ /node_modules/, /__build__/ ],
           loader: 'eslint-loader'
         },
         {
@@ -58,6 +67,10 @@ export default function (env) {
             },
             'postcss-loader'
           ]
+        },
+        {
+          test: /\.(eot|svg|ttf|woff|woff2)$/,
+          loader: 'file-loader?name=[name].[ext]'
         }
       ]
     }

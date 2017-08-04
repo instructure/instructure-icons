@@ -1,52 +1,43 @@
 import gulp from 'gulp';
-import jeditor from 'gulp-json-editor';
+import consolidate from 'gulp-consolidate';
 import rename from 'gulp-rename';
 import config from '../../config';
-import glob from 'glob';
 import path from 'path';
+import fs from 'fs';
 import handleErrors from '../../lib/handle-errors';
 
 gulp.task('generate-demo-data', function () {
-  const formats = [];
+  const data = {
+    demos: [],
+    libraryName: config.libraryName
+  };
 
-  formats.push({
-    name: 'SVG',
-    demos:  glob.sync(config.svg.demoDestination + '**/*.html').map((file) => {
-      return {
-        path: path.relative(config.destination, file),
-        name: path.basename(file, path.extname(file))
-      };
-    })
-  });
+  if (fs.existsSync(`${config.svg.demoDestination}demo.json`)) {
+    data.demos.push({
+      name: 'SVG',
+      requirePath: `./${path.relative(config.destination, `${config.svg.demoDestination}demo.json`)}`
+    });
+  }
 
-  formats.push({
-    name: 'Font',
-    demos:  glob.sync(config.fonts.demoDestination + '**/*.html')
-      .map((file) => {
-        return {
-          path: path.relative(config.destination, file),
-          name: path.basename(file, path.extname(file))
-        };
-      })
-  });
+  if (fs.existsSync(`${config.fonts.demoDestination}demo.json`)) {
+    const demo = JSON.parse(fs.readFileSync(`${config.fonts.demoDestination}demo.json`));
+    data['cssFiles'] = demo.cssFiles;
+    data.demos.push({
+      name: 'Font',
+      requirePath: `./${path.relative(config.destination, `${config.fonts.demoDestination}demo.json`)}`
+    });
+  }
 
-  formats.push({
-    name: 'React',
-    demos:  glob.sync(config.react.demoDestination + '**/*.html')
-      .map((file) => {
-        return {
-          path: path.relative(config.destination, file),
-          name: path.basename(file, path.extname(file))
-        };
-      })
-  });
+  if (fs.existsSync(`${config.react.demoDestination}Demo.js`)) {
+    data.demos.push({
+      name: 'React',
+      requirePath: `./${path.relative(config.destination, `${config.react.demoDestination}Demo.js`)}`
+    });
+  }
 
-  return gulp.src('./gulpfile.babel.js/tasks/generate-demo-data/template.json')
-    .pipe(jeditor({
-      symbols: glob.sync(config.svg.source).map((file) => path.basename(file, path.extname(file))),
-      formats
-    }))
-    .pipe(rename('demo.json'))
+  return gulp.src('./gulpfile.babel.js/tasks/generate-demo-data/template.tmpl')
+    .pipe(consolidate('lodash', data))
+    .pipe(rename('data.js'))
     .on('error', handleErrors)
     .pipe(gulp.dest(config.destination));
 });

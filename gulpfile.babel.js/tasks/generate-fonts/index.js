@@ -8,11 +8,12 @@ import config from '../../config';
 import handleErrors from '../../lib/handle-errors';
 import path from 'path';
 import formatName from '../../lib/format-name';
+import jeditor from 'gulp-json-editor';
 
 const taskDir = './gulpfile.babel.js/tasks/generate-fonts/';
 const demoData = {
   glyphsData: {},
-  cssFiles: [],
+  cssFiles: {},
   fontName: formatName(config.fonts.fontName)
 };
 
@@ -23,10 +24,9 @@ const createFontTask = function (variant) {
   const formats = config.fonts.formats;
   const className = `${config.fonts.className}-${variant.toLowerCase()}`;
 
-  const cssPath = path.normalize(path.relative(config.fonts.demoDestination, destination) + '/');
-  const cssFile = `${cssPath}${fontName}.css`;
+  const cssFile = path.relative(config.destination, `${destination}/${fontName}.css`);
 
-  demoData.cssFiles.push(cssFile);
+  demoData.cssFiles[variant] = `./${cssFile}`;
 
   gulp.task(key, () => {
     return gulp.src(config.fonts.source + variant + '/*.svg')
@@ -82,14 +82,15 @@ gulp.task('generate-fonts-demo', (cb) => {
       variants: demoData.glyphsData[name]
     };
   });
-  return gulp.src(taskDir + 'template.html')
-    .pipe(consolidate('lodash', {
+
+  return gulp.src(`${taskDir}template.json`)
+    .pipe(jeditor({
       cssFiles: demoData.cssFiles,
       fontName: demoData.fontName,
       glyphs
     }))
+    .pipe(rename('demo.json'))
     .on('error', handleErrors)
-    .pipe(rename({ basename: formatName(config.fonts.fontName) }))
     .pipe(gulp.dest(config.fonts.demoDestination));
 });
 

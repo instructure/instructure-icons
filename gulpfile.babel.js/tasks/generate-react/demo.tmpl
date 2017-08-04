@@ -1,13 +1,13 @@
-import React, { Component } from 'react'
-import ReactDOM from 'react-dom'
-
 <% _.each(variants, function(variant) { %>
 import * as <%= variant.bundleName %> from '<%= variant.bundlePath %>'
 <% }); %>
 
 const icons = {};
+const variants = [];
 
 <% _.each(variants, function(variant) { %>
+variants.push('<%= variant.name %>');
+
 Object.keys(<%= variant.bundleName %>).map(compName => {
   const name = compName.substring(0, compName.indexOf('<%= variant.name %>'));
   icons[name] = icons[name] || []
@@ -15,59 +15,21 @@ Object.keys(<%= variant.bundleName %>).map(compName => {
 })
 <% }); %>
 
-const glyphs = Object.keys(icons).map((name) => Object.assign({}, {name, icons: icons[name]}));
+const glyphs = Object.keys(icons).map((name) => Object.assign({}, {name, variants: icons[name]}));
 
-class Demo extends Component {
-
-  renderIcon (name, icons) {
-    return (
-      <div className="cell" key={name}>
-        <div className="example">
-          {
-            icons.map((Icon, i) => <Icon key={name + i} width="4em" height="4em" className="glyph-img"/>)
-          }
-        </div>
-        <div className="glyph-name">
-          <code>
-             &lt;{name}[Variant] /&gt;
-          </code>
-        </div>
-      </div>
-    )
+glyphs.sort(function(a, b) {
+  var nameA = a.name.toUpperCase();
+  var nameB = b.name.toUpperCase();
+  if (nameA < nameB) {
+    return -1;
   }
-
-  render () {
-    return (
-      <div>
-        <h1>React Components</h1>
-
-        <p className="note">
-          <strong>Variants: </strong><% _.each(variants, function(variant) { %> <%= variant.name %>, <% }); %>
-        </p>
-
-        <p className="note">
-        A11y note: By default the role is set to <code>presentation</code>.
-        However, when the <code>title</code> prop is set, the <code>role</code>
-        attribute is set to <code>img</code>. Include the <code>desc</code> prop to further
-        describe the image.
-        </p>
-
-        <p className="note">
-        The <code>fill</code> is set to <code>currentColor</code> and the default <code>width</code> and
-        <code>height</code> are set to <code>1em</code> so you can change the size and color of the icons via
-        CSS <code>color</code> and <code>font-size</code> rules on the parent element.
-        </p>
-
-        <div className="grid">
-          {
-            glyphs.map(glyph => {
-              return this.renderIcon(glyph.name, glyph.icons)
-            })
-          }
-        </div>
-      </div>
-    )
+  if (nameA > nameB) {
+    return 1;
   }
+  return 0;
+});
+
+module.exports = {
+  glyphs: glyphs,
+  variants: variants
 }
-
-ReactDOM.render(<Demo />, document.getElementById('demo'))

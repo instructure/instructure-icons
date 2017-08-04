@@ -1,0 +1,13 @@
+module.exports = {
+  cssFiles: {
+    <% _.mapKeys(cssFiles, function(value, key) { %>
+      <%= key %>: require('<%= value %>'),
+    <% }); %>
+  },
+  libraryName: '<%= libraryName %>',
+  demos: {
+    <% _.each(demos, function(demo) { %>
+      <%= demo.name %>: require('<%= demo.requirePath %>'),
+    <% }); %>
+  }
+}
