@@ -79,6 +79,7 @@ export default function (env) {
   if (env !== 'test') {
     webpackConfig.entry = {
       demo: [
+        'babel-polyfill-loader!',
         path.resolve(config.demoAppSource, 'index.js')
       ],
       'vendor': ['react', 'react-dom']

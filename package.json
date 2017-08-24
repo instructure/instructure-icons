@@ -26,6 +26,7 @@
     "babel-core": "6.24.1",
     "babel-eslint": "7.2.1",
     "babel-loader": "6.4.1",
+    "babel-polyfill-loader": "^1.0.1",
     "babel-preset-env": "1.3.3",
     "babel-preset-react": "6.24.1",
     "babel-preset-stage-1": "6.24.1",
