@@ -5,8 +5,10 @@
     "es6.array.find-index",
     "es6.array.from",
     "es6.string.starts-with",
+    "es6.string.repeat",
     "es7.array.includes",
-    "es6.symbol"
+    "es6.symbol",
+    "es6.function.name"
   ],
   "library": false
 }

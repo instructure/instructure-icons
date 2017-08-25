@@ -28,7 +28,8 @@ const createDemoTask = function (size, variants) {
         glyphs[path.basename(file)] = glyphs[path.basename(file)] || [];
         glyphs[path.basename(file)].push({
           name: variant,
-          src: path.relative(config.destination, file)
+          src: path.relative(config.destination, file),
+          code: fs.readFileSync(file, 'utf8')
         });
       });
     });

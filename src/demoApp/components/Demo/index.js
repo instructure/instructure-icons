@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
+import Modal, { ModalHeader, ModalBody, ModalFooter } from 'instructure-ui/lib/components/Modal';
+import Heading from 'instructure-ui/lib/components/Heading';
+import Typography from 'instructure-ui/lib/components/Typography';
+import Link from 'instructure-ui/lib/components/Link';
+import Button from 'instructure-ui/lib/components/Button';
+import { LiveProvider, LiveEditor } from 'react-live';
 import { Navbar, NavItem } from '../Navbar';
 import styles from './main.css';
 
 import demoData from 'build/data';
 
+const reactDemoComponent = (name) => (`
+import ${name} from 'instructure-icons/lib/${name}'
+
+class MyIcon extends React.Component {
+  render() {
+    return <${name} />
+  }
+}
+`).trim();
+
 export default class Demo extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentDemo: this.defaultDemo()
+      currentDemo: this.defaultDemo(),
+      modal: {
+        isOpen: false,
+        name: ''
+      }
     };
   }
 
@@ -19,6 +39,29 @@ export default class Demo extends Component {
   setCurrentDemo = name => {
     this.setState({ currentDemo: name });
   };
+
+  applicationElement = () => [document.getElementById('app')]
+
+  handleModalClose = () => {
+    this.setState({
+      modal: {
+        isOpen: false,
+        name: ''
+      }
+    });
+  }
+
+  handleModalOpen = (name, type, className = '', code = '') => () => {
+    this.setState({
+      modal: {
+        isOpen: true,
+        name,
+        type,
+        className,
+        code
+      }
+    });
+  }
 
   componentDidMount () {
     this.updateDemo();
@@ -60,11 +103,7 @@ export default class Demo extends Component {
     if (type === 'SVG') {
       return glyph.name;
     } else if (type === 'React') {
-      return (
-        <code>
-           &lt;{glyph.name}[Variant] /&gt;
-        </code>
-      );
+      return glyph.name;
     } else if (type === 'Font') {
       return (
         <div>
@@ -83,9 +122,30 @@ export default class Demo extends Component {
 
   renderVariant (type, name, Variant, i) {
     if (type === 'SVG') {
-      return <img key={name + i} src={Variant.src} className={styles.glyphImg} />;
+      return (
+        <button
+          type="button"
+          key={name + i}
+          className={styles.btnIcon}
+          onClick={this.handleModalOpen(name, type, null, Variant.code)}
+        >
+          <img src={Variant.src} />
+        </button>
+      );
     } else if (type === 'React') {
-      return <Variant key={name + i} width="4em" height="4em" className={styles.glyphImg} />;
+      return (
+        <button
+          type="button"
+          key={name + i}
+          className={styles.btnIcon}
+          onClick={this.handleModalOpen(Variant.name, type)}
+        >
+          <Variant
+            width="4em"
+            height="4em"
+          />
+        </button>
+      );
     } else if (type === 'Font') {
       const { className } = Variant;
 
@@ -94,44 +154,32 @@ export default class Demo extends Component {
       const iconSize = demoData.cssFiles[Variant.name][`${className}-4x`];
 
       return (
-        <span key={name + i} className={styles.iconFont}>
+        <button
+          type="button"
+          key={name + i}
+          className={styles.btnIcon}
+          onClick={this.handleModalOpen(name, type, className)}
+        >
           <i className={`${variantClassName} ${iconClassName} ${iconSize}`} />
-        </span>
+        </button>
       );
     }
-  }
-
-  renderReactInfo (data) {
-    return (
-      <div>
-        <p className={styles.note}>
-        A11y note: By default the role is set to <code>presentation</code>.
-        However, when the <code>title</code> prop is set, the <code>role</code>
-        attribute is set to <code>img</code>. Include the <code>desc</code> prop to further
-        describe the image.
-        </p>
-
-        <p className={styles.note}>
-        The <code>fill</code> is set to <code>currentColor</code> and the default <code>width</code> and
-        <code>height</code> are set to <code>1em</code> so you can change the size and color of the icons via
-        CSS <code>color</code> and <code>font-size</code> rules on the parent element.
-        </p>
-        <p>
-          <strong>Variants: </strong>
-          {
-            data.variants.map(variant => <span key={variant}>{variant}, </span>)
-          }
-        </p>
-      </div>
-    );
   }
 
   renderDemo () {
     const { currentDemo } = this.state;
     return demoData.demos ? (
       <div>
-        <h2>{ this.renderHeading(currentDemo, demoData.demos[currentDemo]) }</h2>
-        { currentDemo === 'React' && this.renderReactInfo(demoData.demos['React']) }
+        <Heading level="h2" color="primary" margin="small">
+          { this.renderHeading(currentDemo, demoData.demos[currentDemo]) }
+        </Heading>
+        {
+          currentDemo === 'React' &&
+          <Typography color="secondary" lineHeight="double">
+            See <Link href="http://instructure.github.io/instructure-ui/#SVGIcon" target="_blank">SVGIcon</Link>
+            &nbsp;component for props and examples.
+          </Typography>
+        }
         <div className={styles.grid}>
           {
             demoData.demos[currentDemo].glyphs.map(glyph => {
@@ -152,6 +200,49 @@ export default class Demo extends Component {
     ) : <h2>Error loading data</h2>;
   }
 
+  renderModalContent () {
+    const { name, type, className, code } = this.state.modal;
+    let demoCode;
+    if (type === 'React') {
+      demoCode = reactDemoComponent(name);
+    } else if (type === 'Font') {
+      demoCode = `<i className="${className} ${className}-${name} ${className}-4x" aria-hidden="true"></i>`;
+    } else if (type === 'SVG') {
+      demoCode = code;
+    }
+    return (
+      <LiveProvider
+        code={demoCode} noInline>
+        <LiveEditor style={{overflowX: 'scroll'}} />
+      </LiveProvider>
+    );
+  }
+
+  renderModal () {
+    const { modal } = this.state;
+    return (
+      <Modal
+        open={modal.isOpen}
+        onDismiss={this.handleModalClose}
+        label={`Modal Dialog: ${modal.name}`}
+        size="medium"
+        shouldCloseOnOverlayClick
+        closeButtonLabel="Close"
+        applicationElement={this.applicationElement}
+      >
+        <ModalHeader>
+          <Heading color="brand">{modal.name}</Heading>
+        </ModalHeader>
+        <ModalBody>
+          {this.renderModalContent()}
+        </ModalBody>
+        <ModalFooter>
+          <Button onClick={this.handleModalClose} variant="primary">Close</Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+
   render () {
     return (
       <div>
@@ -159,6 +250,7 @@ export default class Demo extends Component {
         <div className={styles.container}>
           {this.renderDemo()}
         </div>
+        {this.renderModal()}
       </div>
     );
   }
