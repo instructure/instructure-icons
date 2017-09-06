@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Modal, { ModalHeader, ModalBody, ModalFooter } from 'instructure-ui/lib/components/Modal';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
@@ -24,20 +25,27 @@ export default class Demo extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      currentDemo: this.defaultDemo(),
+      currentPage: props.defaultPage,
       modal: {
         isOpen: false,
         name: ''
       }
     };
   }
+  static propTypes = {
+    defaultPage: PropTypes.string
+  }
+
+  static defaultProps = {
+    defaultPage: 'index'
+  }
 
   updateDemo = () => {
-    this.setCurrentDemo(window.location.hash.slice(1) || this.defaultDemo());
+    this.setCurrentPage(window.location.hash.slice(1) || this.props.defaultPage);
   };
 
-  setCurrentDemo = name => {
-    this.setState({ currentDemo: name });
+  setCurrentPage = name => {
+    this.setState({ currentPage: name });
   };
 
   applicationElement = () => [document.getElementById('app')]
@@ -72,14 +80,11 @@ export default class Demo extends Component {
     window.removeEventListener('hashchange', this.updateDemo, false);
   }
 
-  defaultDemo () {
-    return demoData.demos['React'] ? 'React' : Object.keys(demoData.demos)[0];
-  }
-
   renderNavbar () {
     const version = process.env.VERSION;
     return (
-      <Navbar header={demoData.libraryName} libraryVersion={version} headerHref={`#${this.defaultDemo()}`}>
+      <Navbar header={demoData.libraryName} libraryVersion={version} headerHref={`#${this.props.defaultPage}`}>
+        <NavItem name="Docs" href={`#${this.props.defaultPage}`} />
         {
           Object.keys(demoData.demos).map(name =>
             <NavItem key={name} name={name} href={`#${name}`} />
@@ -167,14 +172,14 @@ export default class Demo extends Component {
   }
 
   renderDemo () {
-    const { currentDemo } = this.state;
-    return demoData.demos ? (
-      <div>
+    const { currentPage } = this.state;
+    return demoData.demos[currentPage] ? (
+      <div className={styles.demoContainer}>
         <Heading level="h2" color="primary" margin="small">
-          { this.renderHeading(currentDemo, demoData.demos[currentDemo]) }
+          { this.renderHeading(currentPage, demoData.demos[currentPage]) }
         </Heading>
         {
-          currentDemo === 'React' &&
+          currentPage === 'React' &&
           <Typography color="secondary" lineHeight="double">
             See <Link href="http://instructure.github.io/instructure-ui/#SVGIcon" target="_blank">SVGIcon</Link>
             &nbsp;component for props and examples.
@@ -182,14 +187,14 @@ export default class Demo extends Component {
         }
         <div className={styles.grid}>
           {
-            demoData.demos[currentDemo].glyphs.map(glyph => {
+            demoData.demos[currentPage].glyphs.map(glyph => {
               return (
                 <div className={styles.cell} key={`${glyph.name}-glyph`}>
                   <div className={styles.example}>
-                    { glyph.variants.map((variant, i) => this.renderVariant(currentDemo, glyph.name, variant, i)) }
+                    { glyph.variants.map((variant, i) => this.renderVariant(currentPage, glyph.name, variant, i)) }
                   </div>
                   <div className={styles.glyphName}>
-                    { this.renderGlyphName(currentDemo, glyph) }
+                    { this.renderGlyphName(currentPage, glyph) }
                   </div>
                 </div>
               );
@@ -243,12 +248,20 @@ export default class Demo extends Component {
     );
   }
 
+  renderPage () {
+    const { currentPage } = this.state;
+    const readMe = process.env.README;
+    return currentPage === 'index' ? (
+      <div className={styles.homepageContainer} dangerouslySetInnerHTML={{__html: readMe}} />)
+    : this.renderDemo();
+  }
+
   render () {
     return (
       <div>
         {this.renderNavbar()}
         <div className={styles.container}>
-          {this.renderDemo()}
+          {this.renderPage()}
         </div>
         {this.renderModal()}
       </div>

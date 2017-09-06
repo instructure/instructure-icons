@@ -1,8 +1,28 @@
 .container {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  padding: 2em;
+}
+.demoContainer {
   text-align: center;
-  background: #f7f7f7;
-  padding: 2em 0;
+}
+.homepageContainer {
+  max-width: 80rem;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+code, pre {
+  font: 12px "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  border-radius: 3px;
+}
+pre {
+  overflow: auto;
+  background-color: #f6f8fa;
+  padding: 1em;
+  line-height: 1.45;
+}
+:not(pre) > code {
+  background-color: rgba(27,31,35,0.05);
+  padding: 0.4em;
 }
 .glyphName { font-size: 1em; color: #666; display: block }
 

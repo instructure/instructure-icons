@@ -2,6 +2,8 @@ import config from '../config';
 import webpack from 'webpack';
 import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import fs from 'fs';
+import marked from 'marked';
 
 export default function (env) {
   let plugins = [
@@ -13,7 +15,8 @@ export default function (env) {
     }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      VERSION: require('../../package.json').version
+      VERSION: require('../../package.json').version,
+      README: marked(fs.readFileSync('README.md', 'utf8'))
     })
   ];
 
