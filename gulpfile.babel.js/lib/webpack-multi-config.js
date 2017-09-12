@@ -16,7 +16,9 @@ export default function (env) {
     new webpack.EnvironmentPlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
       VERSION: require('../../package.json').version,
-      README: marked(fs.readFileSync('README.md', 'utf8'))
+      README: marked(fs.readFileSync('README.md', 'utf8')),
+      AUTHOR: require('../../package.json').author,
+      REPOSITORY: require('../../package.json').repository.url
     })
   ];
 

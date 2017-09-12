@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+
 import Modal, { ModalHeader, ModalBody, ModalFooter } from 'instructure-ui/lib/components/Modal';
 import Heading from 'instructure-ui/lib/components/Heading';
 import Typography from 'instructure-ui/lib/components/Typography';
 import Link from 'instructure-ui/lib/components/Link';
 import Button from 'instructure-ui/lib/components/Button';
+import TextInput from 'instructure-ui/lib/components/TextInput';
+import ScreenReaderContent from 'instructure-ui/lib/components/ScreenReaderContent';
+
+import IconHeartSolid from 'instructure-icons/lib/Solid/IconHeartSolid';
+import IconSearchSolid from 'instructure-icons/lib/Solid/IconSearchSolid';
+import IconGithubSolid from 'instructure-icons/lib/Solid/IconGithubSolid';
+
 import { LiveProvider, LiveEditor } from 'react-live';
 import { Navbar, NavItem } from '../Navbar';
 import styles from './main.css';
@@ -28,7 +36,8 @@ export default class Demo extends Component {
       currentPage: props.defaultPage,
       modal: {
         isOpen: false,
-        name: ''
+        name: '',
+        query: ''
       }
     };
   }
@@ -49,6 +58,8 @@ export default class Demo extends Component {
   };
 
   applicationElement = () => [document.getElementById('app')]
+
+  handleSearchChange = (e) => this.setState({query: e.target.value})
 
   handleModalClose = () => {
     this.setState({
@@ -171,6 +182,19 @@ export default class Demo extends Component {
     }
   }
 
+  renderIcon (type, glyph) {
+    return (
+      <div className={styles.cell} key={`${glyph.name}-glyph`}>
+        <div className={styles.example}>
+          { glyph.variants.map((variant, i) => this.renderVariant(type, glyph.name, variant, i)) }
+        </div>
+        <div className={styles.glyphName}>
+          { this.renderGlyphName(type, glyph) }
+        </div>
+      </div>
+    );
+  }
+
   renderDemo () {
     const { currentPage } = this.state;
     return demoData.demos[currentPage] ? (
@@ -187,18 +211,7 @@ export default class Demo extends Component {
         }
         <div className={styles.grid}>
           {
-            demoData.demos[currentPage].glyphs.map(glyph => {
-              return (
-                <div className={styles.cell} key={`${glyph.name}-glyph`}>
-                  <div className={styles.example}>
-                    { glyph.variants.map((variant, i) => this.renderVariant(currentPage, glyph.name, variant, i)) }
-                  </div>
-                  <div className={styles.glyphName}>
-                    { this.renderGlyphName(currentPage, glyph) }
-                  </div>
-                </div>
-              );
-            })
+            demoData.demos[currentPage].glyphs.map(glyph => this.renderIcon(currentPage, glyph))
           }
         </div>
       </div>
@@ -248,21 +261,77 @@ export default class Demo extends Component {
     );
   }
 
+  renderHeader () {
+    const icon = () => <IconSearchSolid />;
+    return (
+      <div className={styles.header}>
+        <h2>WE <IconHeartSolid /> ICONS</h2>
+        <TextInput
+          placeholder="Search"
+          defaultValue={this.state.query}
+          onChange={this.handleSearchChange}
+          label={<ScreenReaderContent>Search Documentation</ScreenReaderContent>}
+          size="large"
+          icon={icon}
+        />
+      </div>
+    );
+  }
+
+  renderSearchResults () {
+    const { demos } = demoData;
+
+    return (
+      <div className={styles.demoContainer}>
+        {
+          Object.keys(demos).map(type => {
+            return (
+              <div key={type}>
+                <Heading level="h2" color="primary" margin="small">
+                  { type }
+                </Heading>
+                <div className={styles.grid}>
+                  {
+                    demos[type].glyphs.filter(glyph => new RegExp(this.state.query, 'i').test(glyph.name))
+                    .map(glyph => this.renderIcon(type, glyph))
+                  }
+                </div>
+              </div>
+            );
+          })
+        }
+      </div>
+    );
+  }
+
   renderPage () {
-    const { currentPage } = this.state;
+    const { currentPage, query } = this.state;
     const readMe = process.env.README;
     return currentPage === 'index' ? (
-      <div className={styles.homepageContainer} dangerouslySetInnerHTML={{__html: readMe}} />)
+      <div>
+        {this.renderHeader()}
+        { query ? this.renderSearchResults()
+          : <div className={styles.homepageContainer} dangerouslySetInnerHTML={{__html: readMe}} />
+        }
+      </div>)
     : this.renderDemo();
   }
 
   render () {
+    const author = process.env.AUTHOR;
+    const repository = process.env.REPOSITORY;
     return (
       <div>
         {this.renderNavbar()}
         <div className={styles.container}>
           {this.renderPage()}
         </div>
+        <footer>
+          Made with <IconHeartSolid /> by {author}.&nbsp;
+          <a href={repository} className={styles.githubLink} target="_blank">
+            <IconGithubSolid />
+          </a>
+        </footer>
         {this.renderModal()}
       </div>
     );

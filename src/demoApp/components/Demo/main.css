@@ -1,13 +1,26 @@
 .container {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  padding: 2em;
+  padding: 0 0 2em;
+}
+.header{
+  text-align: center;
+  background-color: #C7CDD1;
+  margin-top: 0 0 1em;
+  padding: 5em;
+}
+.header h2 {
+  font-size: 6vw;
+  margin-top: 0;
+  color: #2C3C46;
 }
 .demoContainer {
   text-align: center;
+  padding: 2em 0;
 }
 .homepageContainer {
   max-width: 80rem;
   margin: 0 auto;
+  padding: 2em;
   line-height: 1.5;
 }
 code, pre {
@@ -96,4 +109,12 @@ pre {
 .btnIcon > svg,
 .btnIcon > img {
   border: 1px dashed rgba(0,0,0,0.5);
+}
+
+footer {
+  margin-top: 3rem;
+  padding: 2rem;
+  text-align: center;
+  font-weight: 300;
+  line-height: 1rem;
 }
