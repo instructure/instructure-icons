@@ -5,10 +5,9 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development gulp",
     "test": "cross-env NODE_ENV=test eslint src && mocha --compilers js:babel-core/register -- src/**/*.test.js",
+    "commit": "git-cz",
     "build": "cross-env NODE_ENV=production gulp build",
-    "bump-minor": "gulp bump-minor",
-    "bump-major": "gulp bump-major",
-    "bump-patch": "gulp bump-patch",
+    "bump": "git fetch origin --tags --force && standard-version",
     "clean": "gulp clean",
     "release": "cross-env NODE_ENV=production gulp release",
     "deploy": "cross-env NODE_ENV=production gulp deploy"
@@ -20,6 +19,7 @@
   "author": "Instructure, Inc. Engineering and Product Design",
   "license": "MIT",
   "devDependencies": {
+    "@instructure/conventional-changelog": "1.0.0",
     "autoprefixer": "6.7.7",
     "axios": "0.16.1",
     "babel": "6.23.0",
@@ -33,6 +33,7 @@
     "babel-runtime": "6.23.0",
     "browser-sync": "2.18.8",
     "cheerio": "0.22.0",
+    "commitizen": "^2.9.6",
     "cross-env": "5.0.0",
     "css-loader": "0.28.0",
     "del": "2.2.2",
@@ -88,6 +89,7 @@
     "react-live": "^1.7.0",
     "require-dir": "0.3.2",
     "run-sequence": "1.2.2",
+    "standard-version": "^4.2.0",
     "style-loader": "0.16.1",
     "vinyl-named": "1.1.0",
     "vinyl-paths": "2.1.0",
@@ -102,5 +104,10 @@
   "peerDependencies": {
     "react": "^0.14.9 || ^15.6.1",
     "react-dom": "^0.14.9 || ^15.6.1"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/@instructure/conventional-changelog"
+    }
   }
 }
