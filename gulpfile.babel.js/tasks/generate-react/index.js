@@ -11,6 +11,7 @@ import path from 'path';
 import babel from 'gulp-babel';
 import formatName from '../../lib/format-name';
 import svgtojsx from 'svg-to-jsx';
+import yaml from 'js-yaml';
 
 const toComponentName = function (name, variant) {
   return formatName(config.react.componentBaseName) + formatName(name) + formatName(variant);
@@ -18,7 +19,14 @@ const toComponentName = function (name, variant) {
 
 const taskDir = './gulpfile.babel.js/tasks/generate-react/';
 
+const iconVariants = fs.readdirSync(config.react.source);
+
 let glyphs = [];
+
+let deprecatedIcons;
+try {
+  deprecatedIcons = yaml.safeLoad(fs.readFileSync(`${config.source}sketch/deprecated.yml`, 'utf8'));
+} catch (e) {}
 
 const createReactSvgDataTask = function (variant) {
   const key = 'react-svg-data-' + variant;
@@ -50,9 +58,22 @@ const createReactSvgDataTask = function (variant) {
 
 const createReactComponentTask = function (data) {
   const key = 'react-component-' + data.name;
+  const compData = {...data, isDeprecated: false};
+
+  if (deprecatedIcons) {
+    Object.keys(deprecatedIcons).forEach(icon => {
+      iconVariants.forEach(variant => {
+        if (toComponentName(icon, variant) === data.name) {
+          compData['isDeprecated'] = true;
+          compData['replaceWith'] = toComponentName(deprecatedIcons[icon], variant);
+        }
+      });
+    });
+  }
+
   gulp.task(key, () => {
     return gulp.src(taskDir + 'component.tmpl')
-            .pipe(consolidate('lodash', data))
+            .pipe(consolidate('lodash', compData))
             .pipe(rename({ basename: data.name, extname: '.js' }))
             .on('error', handleErrors)
             .pipe(gulp.dest(data.destination));
@@ -164,17 +185,16 @@ gulp.task('generate-react-svg-data', (cb) => {
 });
 
 gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
-  const variants = fs.readdirSync(config.react.source);
   const componentTasks = createReactComponentsTasks();
   const bundleTasks = [];
   const demoTasks = [];
   const libTasks = [];
 
-  variants.forEach((variant) => {
+  iconVariants.forEach((variant) => {
     bundleTasks.push(createReactBundle(variant));
   });
 
-  demoTasks.push(createReactDemo(variants));
+  demoTasks.push(createReactDemo(iconVariants));
 
   bundleTasks.push(createReactBundle());
   libTasks.push(createReactLib());
