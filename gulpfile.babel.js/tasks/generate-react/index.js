@@ -19,8 +19,6 @@ const toComponentName = function (name, variant) {
 
 const taskDir = './gulpfile.babel.js/tasks/generate-react/';
 
-const iconVariants = fs.readdirSync(config.react.source);
-
 let glyphs = [];
 
 let deprecatedIcons;
@@ -56,13 +54,13 @@ const createReactSvgDataTask = function (variant) {
   return key;
 };
 
-const createReactComponentTask = function (data) {
+const createReactComponentTask = function (data, variants) {
   const key = 'react-component-' + data.name;
   const compData = {...data, isDeprecated: false};
 
   if (deprecatedIcons) {
     Object.keys(deprecatedIcons).forEach(icon => {
-      iconVariants.forEach(variant => {
+      variants.forEach(variant => {
         if (toComponentName(icon, variant) === data.name) {
           compData['isDeprecated'] = true;
           compData['replaceWith'] = toComponentName(deprecatedIcons[icon], variant);
@@ -81,10 +79,10 @@ const createReactComponentTask = function (data) {
   return key;
 };
 
-const createReactComponentsTasks = function () {
+const createReactComponentsTasks = function (variants) {
   const tasks = [];
   glyphs.forEach(function (data) {
-    tasks.push(createReactComponentTask(data));
+    tasks.push(createReactComponentTask(data, variants));
   });
   return tasks;
 };
@@ -185,16 +183,18 @@ gulp.task('generate-react-svg-data', (cb) => {
 });
 
 gulp.task('generate-react', ['generate-react-svg-data'], (cb) => {
-  const componentTasks = createReactComponentsTasks();
+  const variants = fs.readdirSync(config.react.source);
+
+  const componentTasks = createReactComponentsTasks(variants);
   const bundleTasks = [];
   const demoTasks = [];
   const libTasks = [];
 
-  iconVariants.forEach((variant) => {
+  variants.forEach((variant) => {
     bundleTasks.push(createReactBundle(variant));
   });
 
-  demoTasks.push(createReactDemo(iconVariants));
+  demoTasks.push(createReactDemo(variants));
 
   bundleTasks.push(createReactBundle());
   libTasks.push(createReactLib());
