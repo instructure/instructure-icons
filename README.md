@@ -4,11 +4,9 @@ The official icon set for Instructure, Inc. products.
 
 ## Icon formats:
 
-- SVG files, icon font and SVG sprite optimized for web
-- SVG files with [configurable](gulpfile.babel.js/config.js) bounding boxes/margins for Android
-- PDF files with [configurable](gulpfile.babel.js/config.js) bounding boxes/margins for iOS
-- SVG sprites
 - Accessible React components for each icon/variant
+- SVG files optimzied for the web with [configurable](gulpfile.babel.js/config.js) bounding boxes/margins
+- Icon font (to support legacy UI code)
 
 ## Usage
 
