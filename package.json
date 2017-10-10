@@ -98,8 +98,8 @@
     "webpack-stream": "3.2.0"
   },
   "dependencies": {
+    "nanoid": "^0.2.2",
     "prop-types": "^15.5.8",
-    "shortid": "^2.2.8",
     "svg-to-jsx": "^0.0.20"
   },
   "peerDependencies": {
