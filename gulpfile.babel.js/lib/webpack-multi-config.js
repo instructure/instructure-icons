@@ -5,6 +5,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import fs from 'fs';
 import marked from 'marked';
 
+const pkg = require('../../package.json');
+
 export default function (env) {
   let plugins = [
     new HtmlWebpackPlugin({
@@ -15,10 +17,11 @@ export default function (env) {
     }),
     new webpack.EnvironmentPlugin({
       NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-      VERSION: require('../../package.json').version,
+      LIBRARY: pkg.name,
+      VERSION: pkg.version,
       README: marked(fs.readFileSync('README.md', 'utf8')),
-      AUTHOR: require('../../package.json').author,
-      REPOSITORY: require('../../package.json').repository.url
+      AUTHOR: pkg.author,
+      REPOSITORY: pkg.repository.url
     })
   ];
 

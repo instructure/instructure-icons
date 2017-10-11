@@ -19,8 +19,8 @@ import styles from './main.css';
 
 import demoData from 'build/data';
 
-const reactDemoComponent = (name) => (`
-import ${name} from 'instructure-icons/lib/${name}'
+const reactDemoComponent = (name, variant) => (`
+import ${name} from '${process.env.LIBRARY}/lib/${variant}/${name}'
 
 class MyIcon extends React.Component {
   render() {
@@ -65,16 +65,18 @@ export default class Demo extends Component {
     this.setState({
       modal: {
         isOpen: false,
-        name: ''
+        name: '',
+        variant: ''
       }
     });
   }
 
-  handleModalOpen = (name, type, className = '', code = '') => () => {
+  handleModalOpen = (name, variant, type, className = '', code = '') => () => {
     this.setState({
       modal: {
         isOpen: true,
         name,
+        variant,
         type,
         className,
         code
@@ -136,48 +138,45 @@ export default class Demo extends Component {
     }
   }
 
-  renderVariant (type, name, Variant, i) {
+  renderVariant (type, name, variant, i) {
     if (type === 'SVG') {
       return (
-        <button
-          type="button"
+        <Button
+          variant="icon"
           key={name + i}
-          className={styles.btnIcon}
-          onClick={this.handleModalOpen(name, type, null, Variant.code)}
+          size="large"
+          onClick={this.handleModalOpen(name, variant.name, type, null, variant.code)}
         >
-          <img src={Variant.src} />
-        </button>
+          <img src={variant.src} width="48px" height="48px" />
+        </Button>
       );
     } else if (type === 'React') {
+      const Icon = variant.component;
       return (
-        <button
-          type="button"
+        <Button
+          variant="icon"
+          size="large"
           key={name + i}
-          className={styles.btnIcon}
-          onClick={this.handleModalOpen(Variant.name, type)}
+          onClick={this.handleModalOpen(variant.component.displayName, variant.name, type)}
         >
-          <Variant
-            width="4em"
-            height="4em"
-          />
-        </button>
+          <Icon />
+        </Button>
       );
     } else if (type === 'Font') {
-      const { className } = Variant;
+      const { className } = variant;
 
-      const variantClassName = demoData.cssFiles[Variant.name][className];
-      const iconClassName = demoData.cssFiles[Variant.name][`${className}-${name}`];
-      const iconSize = demoData.cssFiles[Variant.name][`${className}-4x`];
+      const variantClassName = demoData.cssFiles[variant.name][className];
+      const iconClassName = demoData.cssFiles[variant.name][`${className}-${name}`];
 
       return (
-        <button
-          type="button"
+        <Button
+          variant="icon"
+          size="large"
           key={name + i}
-          className={styles.btnIcon}
-          onClick={this.handleModalOpen(name, type, className)}
+          onClick={this.handleModalOpen(name, variant.name, type, className)}
         >
-          <i className={`${variantClassName} ${iconClassName} ${iconSize}`} />
-        </button>
+          <i className={`${variantClassName} ${iconClassName}`} />
+        </Button>
       );
     }
   }
@@ -197,6 +196,7 @@ export default class Demo extends Component {
 
   renderDemo () {
     const { currentPage } = this.state;
+
     return demoData.demos[currentPage] ? (
       <div className={styles.demoContainer}>
         <Heading level="h2" color="primary" margin="small">
@@ -219,12 +219,12 @@ export default class Demo extends Component {
   }
 
   renderModalContent () {
-    const { name, type, className, code } = this.state.modal;
+    const { name, variant, type, className, code } = this.state.modal;
     let demoCode;
     if (type === 'React') {
-      demoCode = reactDemoComponent(name);
+      demoCode = reactDemoComponent(name, variant);
     } else if (type === 'Font') {
-      demoCode = `<i className="${className} ${className}-${name} ${className}-4x" aria-hidden="true"></i>`;
+      demoCode = `<i className="${className} ${className}-${name}" aria-hidden="true"></i>`;
     } else if (type === 'SVG') {
       demoCode = code;
     }

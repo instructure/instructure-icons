@@ -6,16 +6,19 @@ const icons = {};
 const variants = [];
 
 <% _.each(variants, function(variant) { %>
-variants.push('<%= variant.name %>');
+  variants.push('<%= variant.name %>');
 
-Object.keys(<%= variant.bundleName %>).map(compName => {
-  const name = compName.substring(0, compName.indexOf('<%= variant.name %>'));
-  icons[name] = icons[name] || []
-  icons[name].push(<%= variant.bundleName %>[compName])
-})
+  Object.keys(<%= variant.bundleName %>).map(compName => {
+    const name = compName.substring(0, compName.indexOf('<%= variant.name %>'));
+    icons[name] = icons[name] || { name, variants: [] }
+    icons[name].variants.push({
+      name: '<%= variant.name %>',
+      component: <%= variant.bundleName %>[compName]
+    })
+  })
 <% }); %>
 
-const glyphs = Object.keys(icons).map((name) => Object.assign({}, {name, variants: icons[name]}));
+const glyphs = Object.keys(icons).map((name) => icons[name]);
 
 glyphs.sort(function(a, b) {
   var nameA = a.name.toUpperCase();
