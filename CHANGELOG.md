@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="4.3.2"></a>
+## [4.3.2](https://github.com/instructure/instructure-icons/compare/v4.3.0...v4.3.2) (2017-10-13)
+
+
+### Bug Fixes
+
+* **docs:** Fix import paths for React components ([748357a](https://github.com/instructure/instructure-icons/commit/748357a))
+* **React:** Adding displayName babel transform for React components ([dd2aa08](https://github.com/instructure/instructure-icons/commit/dd2aa08))
+
+
+
 <a name="4.3.1"></a>
 ## [4.3.1](https://github.com/instructure/instructure-icons/compare/v4.3.0...v4.3.1) (2017-09-22)
 
