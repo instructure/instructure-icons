@@ -5,7 +5,7 @@ The official icon set for Instructure, Inc. products.
 ## Icon formats:
 
 - Accessible React components for each icon/variant
-- SVG files optimzied for the web with [configurable](gulpfile.babel.js/config.js) bounding boxes/margins
+- SVG files optimized for the web with configurable bounding boxes/margins
 - Icon font (to support legacy UI code)
 
 ## Usage
@@ -49,7 +49,7 @@ The build scripts generate icon sets from the source Sketch files for multiple p
 
 ### Adding and Modifying Icons
 
-- Start with the [Sketch template](template.sketch) provided. Open the template file and then save it as a template (File > Save as Template...). The next time you want to make an icon it will be available in your template list (File > New From Template) in the Sketch app.
+- Start with the Sketch template provided in the root directory. Open the template file and then save it as a template (File > Save as Template...). The next time you want to make an icon it will be available in your template list (File > New From Template) in the Sketch app.
 
 - Save new icon files in the `/src/sketch` directory.
 
