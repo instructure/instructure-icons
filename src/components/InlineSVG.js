@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import svgtojsx from 'svg-to-jsx';
-import shortid from 'shortid';
+import nanoid from 'nanoid';
 
 export default class InlineSVG extends React.Component {
   static propTypes = {
@@ -19,8 +19,8 @@ export default class InlineSVG extends React.Component {
   constructor (props) {
     super();
 
-    this.titleId = shortid.generate();
-    this.descId = shortid.generate();
+    this.titleId = nanoid(7);
+    this.descId = nanoid(7);
   }
 
   get role () {
